@@ -1,0 +1,52 @@
+Quartus II Archive log --	//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/New folder/FEE_BC_DTC.qarlog
+
+Archive:	//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/New folder/FEE_BC_DTC.qar
+Date:		Wed Mar 29 06:26:49 2017
+Quartus II		9.0 Build 132 02/25/2009 SJ Web Edition
+
+	=========== Files Selected: ===========
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/CcnuFeeFm.qpf
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/CcnuFeeFm.tcl
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/FEESrcCode/dac_ctrl_fsm.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/FEE_BC_DTC.qsf
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/SDC1.sdc
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/assignment_defaults.qdf
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/db/FEE_BC_DTC.sim.cvwf
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/L_shiftreg_out_16.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/L_shiftreg_out_8.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/altro/LGFlagModule.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/altro/altro_if.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/altro/altro_top.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/altro/ch_ram.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/altro/event_fifo.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/altro/fed_build.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/boardcontroller.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/clk_div_400k.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/dtc/BitDdr.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/dtc/PRBS_ANY.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/dtc/dtcTrigDecode.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/dtc/dtc_cmd.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/dtc/dtc_rx.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/dtc/dtc_top.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/dtc/dtc_tx.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/memory_interface.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/adc_config_fsm.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/adc_ctr_word.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/adc_data_decode.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/adc_i2c_transceiver.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/adc_i2c_transceiver_fsm.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/adc_top_module.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/dac_data_coding.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/dac_driver_module.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/eprom_data_decode.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/eprom_fsm.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/eprom_top_module.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/error_detect.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/hv_dac_fsm.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/hv_top_module.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/i2c_transceiver.v
+//psf/Home/Desktop/CcnuFeeFm5043/CcnuFeeFm5043/feesrccode/others/i2c_transceiver_fsm.v
+	======= Total: 41 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
