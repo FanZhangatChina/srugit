@@ -1,0 +1,106 @@
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+//******************************************************************************
+//*
+//* Module          : sru_top
+//* File            : sru_top.v
+//* Description     : Top module of the DDL links
+//* Author/Designer : Zhang.Fan (fanzhang.ccnu@gmail.com)
+//*
+//*     01-28-03-2013 : Change sru_busy_flag_in
+//*******************************************************************************
+NET "brd_reset_n" LOC = L9;
+NET "htrig" LOC = AD22;
+
+##PX7,8,9,10
+##TTL_TO_NIM[0]
+#NET "NimOut[0]" LOC = AC23;
+#NET "NimOut[1]" LOC = AC24; #TTL_TO_NIM[1]
+#NET "NimOut[2]" LOC = AH9; #TTL_TO_NIM[2]
+#NET "NimOut[3]" LOC = AJ9; #TTL_TO_NIM[2]
+NET "sru_busy_flag_out_p" LOC = T24; 
+NET "sru_busy_flag_out_n" LOC = T23;
+#NET "BUSY_FLAG_IN_P"						LOC = "AD24";    ##COAX_LVDS_IO_P<3>
+#NET "BUSY_FLAG_IN_N"						LOC = "AE24";    ##COAX_LVDS_IO_N<3>
+NET "sru_busy_flag_in_p[0]" LOC = AD24; 
+NET "sru_busy_flag_in_n[0]" LOC = AE24;
+##NET "COAX_LVDS_IN_P"					LOC = "U23";     ##COAX_LVDS_IO_P<2>     	
+##NET "COAX_LVDS_IN_N"					LOC = "V23";     ##COAX_LVDS_IO_N<2>
+NET "sru_busy_flag_in_p[1]" LOC = U23; 
+NET "sru_busy_flag_in_n[1]" LOC = V23;
+
+##SPARE[3] Pin 1 on T20 -] LD10.
+NET "LedIndicator[0]" LOC = C22;
+
+NET "LedIndicator[1]" LOC = D22;
+##SPARE[1] Pin 1 on T18 -] LD6.
+NET "LedIndicator[2]" LOC = G26;
+##SPARE[0] Pin 1 on T17 -] LD1.
+NET "LedIndicator[3]" LOC = H10;
+
+################################Flash#####################################
+NET FLASH_A[0] 	LOC = AL8;
+NET FLASH_A[1] 	LOC = AK8;
+NET FLASH_A[2] 	LOC = AC9;
+NET FLASH_A[3] 	LOC = AD10;
+NET FLASH_A[4] 	LOC = C8;
+NET FLASH_A[5] 	LOC = B8;
+NET FLASH_A[6] 	LOC = E9;
+NET FLASH_A[7] 	LOC = E8;
+NET FLASH_A[8] 	LOC = A8;
+NET FLASH_A[9] 	LOC = A9;
+NET FLASH_A[10] 	LOC = D9;
+NET FLASH_A[11] 	LOC = C9;
+NET FLASH_A[12] 	LOC = D10;
+NET FLASH_A[13] 	LOC = C10;
+NET FLASH_A[14] 	LOC = F10;
+NET FLASH_A[15] 	LOC = F9;
+NET FLASH_A[16] 	LOC = AH8;
+NET FLASH_A[17] 	LOC = AG8;
+NET FLASH_A[18] 	LOC = AP9;
+NET FLASH_A[19] 	LOC = AN9;
+NET FLASH_A[20] 	LOC = AF10;
+NET FLASH_A[21] 	LOC = AF9;
+NET FLASH_A[22] 	LOC = AL9;
+
+NET FLASH_RS0 	LOC = AA23;
+NET FLASH_RS1 	LOC = AG23;
+
+NET FLASH_DQ[0] 	LOC = AF24;
+NET FLASH_DQ[1] 	LOC = AF25;
+NET FLASH_DQ[2] 	LOC = W24;
+NET FLASH_DQ[3] 	LOC = V24;
+NET FLASH_DQ[4] 	LOC = H24;
+NET FLASH_DQ[5] 	LOC = H25;
+NET FLASH_DQ[6] 	LOC = P24;
+NET FLASH_DQ[7] 	LOC = R24;
+NET FLASH_DQ[8] 	LOC = G23;
+NET FLASH_DQ[9] 	LOC = H23;
+NET FLASH_DQ[10] 	LOC = N24;
+NET FLASH_DQ[11] 	LOC = N23;
+NET FLASH_DQ[12] 	LOC = F23;
+NET FLASH_DQ[13] 	LOC = F24;
+NET FLASH_DQ[14] 	LOC = L24;
+NET FLASH_DQ[15] 	LOC = M23;
+
+####SRUV3
+###NET FLASH_CS_B 	LOC = Y24;
+###NET FLASH_OE_B 	LOC = AA24;
+###
+#####SRUV1V2
+####NET FLASH_CS_B 	LOC = AA24;
+####NET FLASH_OE_B 	LOC = Y24;
+####
+NET FLASH_WE_B 	LOC = AF23;
+
+#NET FPGA_ERROR_LED 	LOC = AB23	| IOSTANDARD=LVCMOS25;
+NET FPGA_PROG_B 	LOC = J32;
+########################################################################
+#Clock cleaner control interface
+#NET "clkuwire" LOC = AD9; 
+#NET "datauwire" LOC = AE9;
+#NET "leuwire" LOC = AK9; 
+#NET "pll_sync_n" LOC = AE23;
+#NET "pll_lock" LOC = AE22; 
+#For PLLCLK_SEL, DDR_PS_EN, LVDS_E_PS_EN, LVDS_W_PS_EN
+#NET "mon_i2c_scl" LOC = C32;
+#NET "mon_i2c_sda" LOC = B32;

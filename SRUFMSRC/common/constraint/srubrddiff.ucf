@@ -1,0 +1,45 @@
+#################################################################################
+##SRUV3
+NET "brdclk_p" LOC = J9;
+NET "brdclk_n" LOC = H9;
+NET "brdclk_p" TNM_NET = brd_clk_100m;
+NET "brdclk_n" TNM_NET = brd_clk_100m;
+TIMESPEC TS_brd_clk_100m = PERIOD "brd_clk_100m" 8 ns HIGH 50% INPUT_JITTER 0.5 ns;
+
+NET "ttc_clk40_p" LOC = L23;
+NET "ttc_clk40_n" LOC = M22;
+NET "ttc_clk40_p" TNM_NET = clk_40m;
+NET "ttc_clk40_n" TNM_NET = clk_40m;
+TIMESPEC TS_clk_40m = PERIOD "clk_40m" 20 ns HIGH 50% INPUT_JITTER 0.5 ns;
+
+NET "dtc_clk[?]" TNM_NET = clk_40m;
+NET "dcsclk" TNM_NET = clk_40m;
+#NET "*rdoclk" TNM_NET = clk_40m;
+NET "mgtrefclk_p" LOC = M6;
+NET "mgtrefclk_n" LOC = M5;
+INST "*u_xgbe2_locallink/xgbe2_block_inst/v6_gtxwizard_top_inst/bufr_clk_ds" LOC = BUFR_X2Y6;
+
+NET FLASH_CS_B 	LOC = Y24;
+NET FLASH_OE_B 	LOC = AA24;
+#################################################################################
+###################################################################################
+###SRUV2
+##NET "brdclk_p" LOC = J9;
+###NET "brdclk_n" LOC = H9;
+##NET "brdclk_p" TNM_NET = brd_clk_100m;
+###NET "brdclk_n" TNM_NET = brd_clk_100m;
+##TIMESPEC TS_brd_clk_100m = PERIOD "brd_clk_100m" 20 ns HIGH 50% INPUT_JITTER 0.5 ns;
+##
+##NET "ttc_clk40_p" LOC = A10;
+###NET "ttc_clk40_n" LOC = M22;
+##NET "ttc_clk40_p" TNM_NET = clk_40m;
+###NET "ttc_clk40_n" TNM_NET = clk_40m;
+##TIMESPEC TS_clk_40m = PERIOD "clk_40m" 20 ns HIGH 50% INPUT_JITTER 0.5 ns;
+##
+##NET mgtrefclk_n 	LOC = H5; 
+##NET mgtrefclk_p 	LOC = H6; 
+##INST "*u_xgbe2_locallink/xgbe2_block_inst/v6_gtxwizard_top_inst/bufr_clk_ds" LOC = BUFR_X2Y8;
+##
+##NET FLASH_CS_B 	LOC = AA24;
+##NET FLASH_OE_B 	LOC = Y24;
+###################################################################################

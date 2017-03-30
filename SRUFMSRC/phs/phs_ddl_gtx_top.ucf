@@ -1,0 +1,40 @@
+####################### GTX reference clock constraints #######################
+NET ddl_refclk_n  LOC=P5;
+NET ddl_refclk_p  LOC=P6;
+NET "ddl_refclk_p" TNM_NET = ddl_refclk;
+NET "ddl_refclk_n" TNM_NET = ddl_refclk;
+TIMESPEC TS_ddl_refclk = PERIOD "ddl_refclk" 4 ns HIGH 50% INPUT_JITTER 500 ps;
+
+INST "*SIU_CH_GEN[0].SIU_WRAPPER_INST*TLK2501_EMU_INST/GTX_INST/v6_gtxwizard_v1_12_i/gtx0_v6_gtxwizard_v1_12_i/gtxe1_i" LOC = GTXE1_X0Y13;
+
+####################### PHS #######################
+
+NET "u_ddl_mac/u_siu_emulator/gtx0_rxrecclk" TNM_NET = u_ddl_mac/u_siu_emulator/gtx0_rxrecclk;
+TIMESPEC TS_u_ddl_mac_u_siu_emulator_gtx0_rxrecclk = PERIOD "u_ddl_mac/u_siu_emulator/gtx0_rxrecclk" 8 ns HIGH 50%;
+NET "u_ddl_mac/u_siu_emulator/gtx0_txoutclk" TNM_NET = u_ddl_mac/u_siu_emulator/gtx0_txoutclk;
+TIMESPEC TS_u_ddl_mac_u_siu_emulator_gtx0_txoutclk = PERIOD "u_ddl_mac/u_siu_emulator/gtx0_txoutclk" 8 ns HIGH 50%;
+
+NET "u_ddl_mac/u_siu_emulator*gtx0_rxrecclk" TNM_NET = FFS "GRP_RXCLK";
+NET "u_ddl_mac/u_siu_emulator*gtx0_txoutclk" TNM_NET = FFS "GRP_TXCLK";
+NET "u_ddl_mac/u_siu_emulator/refclk_bufg" TNM_NET = FFS "GRP_SYSCLK";
+TIMESPEC TS_RX_TO_TX = FROM "GRP_RXCLK" TO "GRP_TXCLK" TIG;
+TIMESPEC TS_RXCLK_TO_SYSCLK = FROM "GRP_RXCLK" TO "GRP_SYSCLK" TIG;
+
+
+######################### EMC #######################
+##INST "*SIU_CH_GEN[1].SIU_WRAPPER_INST*TLK2501_EMU_INST/GTX_INST/v6_gtxwizard_v1_12_i/gtx0_v6_gtxwizard_v1_12_i/gtxe1_i" LOC = GTXE1_X0Y12;
+##
+##NET "u_ddl_mac/u_siu_emulator/gtx0_rxrecclk<0>" TNM_NET = u_ddl_mac/u_siu_emulator/gtx0_rxrecclk<0>;
+##TIMESPEC TS_u_ddl_mac_u_siu_emulator_gtx0_rxrecclk_0_ = PERIOD "u_ddl_mac/u_siu_emulator/gtx0_rxrecclk<0>" 8 ns HIGH 50%;
+##NET "u_ddl_mac/u_siu_emulator/gtx0_txoutclk<0>" TNM_NET = u_ddl_mac/u_siu_emulator/gtx0_txoutclk<0>;
+##TIMESPEC TS_u_ddl_mac_u_siu_emulator_gtx0_txoutclk_0_ = PERIOD "u_ddl_mac/u_siu_emulator/gtx0_txoutclk<0>" 8 ns HIGH 50%;
+##NET "u_ddl_mac/u_siu_emulator/gtx0_txoutclk<1>" TNM_NET = u_ddl_mac/u_siu_emulator/gtx0_txoutclk<1>;
+##TIMESPEC TS_u_ddl_mac_u_siu_emulator_gtx0_txoutclk_1_ = PERIOD "u_ddl_mac/u_siu_emulator/gtx0_txoutclk<1>" 8 ns HIGH 50%;
+##NET "u_ddl_mac/u_siu_emulator/gtx0_rxrecclk<1>" TNM_NET = u_ddl_mac/u_siu_emulator/gtx0_rxrecclk<1>;
+##TIMESPEC TS_u_ddl_mac_u_siu_emulator_gtx0_rxrecclk_1_ = PERIOD "u_ddl_mac/u_siu_emulator/gtx0_rxrecclk<1>" 8 ns HIGH 50%;
+##
+##NET "u_ddl_mac/u_siu_emulator*gtx0_rxrecclk<*>" TNM_NET = FFS "GRP_RXCLK";
+##NET "u_ddl_mac/u_siu_emulator*gtx0_txoutclk<*>" TNM_NET = FFS "GRP_TXCLK";
+##NET "u_ddl_mac/u_siu_emulator/refclk_bufg" TNM_NET = FFS "GRP_SYSCLK";
+##TIMESPEC TS_RX_TO_TX = FROM "GRP_RXCLK" TO "GRP_TXCLK" TIG;
+##TIMESPEC TS_RXCLK_TO_SYSCLK = FROM "GRP_RXCLK" TO "GRP_SYSCLK" TIG;

@@ -1,0 +1,196 @@
+#############################################################################
+##
+##
+##
+#############################################################################
+##   ____  ____
+##  /   /\/   /
+## /___/  \  /
+## \   \   \/    Core:          sem
+##  \   \        Module:        sem_example
+##  /   /        Filename:      sem_example.ucf
+## /___/   /\    Purpose:       Constraints for the example design.
+## \   \  /  \
+##  \___\/\___\
+##
+#############################################################################
+##
+## (c) Copyright 2010 - 2013 Xilinx, Inc. All rights reserved.
+##
+## This file contains confidential and proprietary information
+## of Xilinx, Inc. and is protected under U.S. and
+## international copyright and other intellectual property
+## laws.
+##
+## DISCLAIMER
+## This disclaimer is not a license and does not grant any
+## rights to the materials distributed herewith. Except as
+## otherwise provided in a valid license issued to you by
+## Xilinx, and to the maximum extent permitted by applicable
+## law: (1) THESE MATERIALS ARE MADE AVAILABLE "AS IS" AND
+## WITH ALL FAULTS, AND XILINX HEREBY DISCLAIMS ALL WARRANTIES
+## AND CONDITIONS, EXPRESS, IMPLIED, OR STATUTORY, INCLUDING
+## BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, NON-
+## INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE; and
+## (2) Xilinx shall not be liable (whether in contract or tort,
+## including negligence, or under any other theory of
+## liability) for any loss or damage of any kind or nature
+## related to, arising under or in connection with these
+## materials, including for any direct, or any indirect,
+## special, incidental, or consequential loss or damage
+## (including loss of data, profits, goodwill, or any type of
+## loss or damage suffered as a result of any action brought
+## by a third party) even if such damage or loss was
+## reasonably foreseeable or Xilinx had been advised of the
+## possibility of the same.
+##
+## CRITICAL APPLICATIONS
+## Xilinx products are not designed or intended to be fail-
+## safe, or for use in any application requiring fail-safe
+## performance, such as life-support or safety devices or
+## systems, Class III medical devices, nuclear facilities,
+## applications related to the deployment of airbags, or any
+## other applications that could lead to death, personal
+## injury, or severe property or environmental damage
+## (individually and collectively, "Critical
+## Applications"). Customer assumes the sole risk and
+## liability of any use of Xilinx products in Critical
+## Applications, subject only to applicable laws and
+## regulations governing limitations on product liability.
+##
+## THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
+## PART OF THIS FILE AT ALL TIMES. 
+##
+#############################################################################
+##
+## Constraint Description:
+##
+## These constraints are for physical implementation of the system level
+## design example.
+##
+## The SEM controller initializes and manages the FPGA integrated silicon
+## features for soft error mitigation.  When the controller is included
+## in a design, do not include any design constraints related to these
+## features.  Similarly, do not use any related bitgen options other than
+## those for generating essential bit data files.
+##
+#############################################################################
+
+CONFIG PART = xc6vlx130t-ff1156-1 ;
+
+########################################
+## Controller: Internal Timing
+########################################
+
+## The controller clock PERIOD constraint is propagated into the controller
+## from the system level design example, where a PERIOD constraint is applied
+## on the external clock input pin.
+
+## The FRAME_ECC primitive is not considered a synchronous timing point,
+## although it is.  As a result, paths between FRAME_ECC and the controller
+## are not analyzed by the PERIOD constraint.  These constraints are placed
+## to supplement the PERIOD coverage to ensure the nets are fully constrained.
+
+INST "u_sem_v3_6_wrapper/example_cfg/example_frame_ecc" TPSYNC = FECC_SPECIAL ;
+TIMESPEC "TS_FECC_SYNC" = FROM "FECC_SPECIAL" TO FFS(*) 97000 ps ;
+TIMESPEC "TS_FECC_PADS" = FROM "FECC_SPECIAL" TO PADS(*) 200000 ps ;
+
+########################################
+## Example Design: Master Clock
+########################################
+
+## Constraints on the clock net, including the clock PERIOD constraint.
+
+#NET "clk"                                           IOSTANDARD = LVCMOS25 | PERIOD = 125000 ps ;
+#NET "brdclk_p" LOC = J9;
+#NET "brdclk_n" LOC = H9;
+#NET "brdclk_p" TNM_NET = brd_clk_100m;
+#NET "brdclk_n" TNM_NET = brd_clk_100m;
+#TIMESPEC TS_brd_clk_100m = PERIOD "brd_clk_100m" 10 ns HIGH 50% INPUT_JITTER 0.5 ns;
+NET "icap_clk"                                           PERIOD = 100000 ps ;
+########################################
+## Example Design: Status Pins
+########################################
+
+## Constraints on the external status pins.  These are expected to
+## be used as asynchronous "flag" outputs, although they can be used
+## as synchronous outputs with respect to the "clk" input signal.
+## The timing constraints are therefore intended to make sure the
+## timing paths are analyzed, rather than unconstrained.  It is also
+## possible to use these as internal signals between the status port
+## and user-supplied logic to observe the status port.  In such use,
+## the signals would be covered by PERIOD constraint.
+
+#NET "status_initialization"                          SLEW = SLOW | TNM = STAPINS ;
+#NET "status_observation"                             SLEW = SLOW | TNM = STAPINS ;
+#NET "status_correction"                              SLEW = SLOW | TNM = STAPINS ;
+#NET "status_classification"                          SLEW = SLOW | TNM = STAPINS ;
+#NET "status_injection"                               SLEW = SLOW | TNM = STAPINS ;
+#NET "status_uncorrectable"                           SLEW = SLOW | TNM = STAPINS ;
+##NET "status_essential"                               SLEW = SLOW | TNM = STAPINS ;
+#NET "status_heartbeat"                               SLEW = SLOW | TNM = STAPINS ;
+#
+#TIMEGRP "STAPINS"                                   OFFSET = OUT 250000 ps AFTER "icap_clk" ;
+
+########################################
+## Example Design: MON Shim and Pins
+########################################
+
+## Constraints on the MON shim external pins, for reproducibility.
+## The timing analysis by trce need not be reviewed for these pins
+## as the serial communications interface is asynchronous.
+
+#INST "example_mon/example_mon_sipo/sync_reg"        IOB = TRUE ;
+#INST "example_mon/example_mon_piso/pipeline_serial" IOB = TRUE ;
+#
+#NET "monitor_tx"                                    IOSTANDARD = LVCMOS25 | DRIVE = 4 | SLEW = SLOW | TNM = SERPINS ;
+#NET "monitor_rx"                                    IOSTANDARD = LVCMOS25 | TNM = SERPINS ;
+#
+#TIMEGRP "SERPINS"                                   OFFSET = IN  250000 ps VALID 500000 ps BEFORE "clk" ;
+#TIMEGRP "SERPINS"                                   OFFSET = OUT 250000 ps AFTER "clk" ;
+#
+########################################
+## Example Design: Logic Placement
+########################################
+
+## Constraints on logic placement.  The controller and its
+## shims, which are the soft error mitigation solution, need
+## to be reasonably area constrained.  This keeps everything
+## near the configuration logic and also helps in generating
+## a reasonable slice count estimate for reliability estimates.
+
+INST "u_sem_v3_6_wrapper/example_controller/*" AREA_GROUP = "SEM_CONTROLLER" ;
+INST "u_sem_v3_6_wrapper/example_mon/*" AREA_GROUP = "SEM_CONTROLLER" ;
+INST "u_sem_v3_6_wrapper/u_HeartbeatFreqTest/*" AREA_GROUP = "SEM_CONTROLLER" ;
+
+AREA_GROUP "SEM_CONTROLLER" RANGE = SLICE_X56Y115:SLICE_X71Y124 ;
+AREA_GROUP "SEM_CONTROLLER" RANGE = RAMB18_X3Y46:RAMB18_X3Y49 ;
+
+## Prohibit addition of unrelated logic into this group...
+AREA_GROUP "SEM_CONTROLLER" GROUP = CLOSED ;
+
+## Allow placement of unrelated components in the range...
+AREA_GROUP "SEM_CONTROLLER" PLACE = OPEN ;
+
+########################################
+## Example Design: I/O Placement
+########################################
+
+## To place the I/O, uncomment the following template and
+## annotate with desired pin location for each signal.
+
+## NET "clk"                                        LOC = "    " ;
+## NET "status_initialization"                      LOC = "    " ;
+## NET "status_observation"                         LOC = "    " ;
+## NET "status_correction"                          LOC = "    " ;
+## NET "status_classification"                      LOC = "    " ;
+## NET "status_injection"                           LOC = "    " ;
+## NET "status_uncorrectable"                       LOC = "    " ;
+## NET "status_essential"                           LOC = "    " ;
+## NET "status_heartbeat"                           LOC = "    " ;
+## NET "monitor_tx"                                 LOC = "    " ;
+## NET "monitor_rx"                                 LOC = "    " ;
+
+#############################################################################
+##
+#############################################################################

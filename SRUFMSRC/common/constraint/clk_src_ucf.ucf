@@ -1,0 +1,31 @@
+INST "u_main_clk_gen/*USerClkGen?mmcm_adv_inst" LOC = MMCM_ADV_X0Y4;
+INST "u_main_clk_gen/*u_brdclk_pll?mmcm_adv_inst" LOC = MMCM_ADV_X0Y3;
+
+#Created by Constraints Editor (xc6vlx130t-ff1156-1) - 2011/11/21
+INST "u_main_clk_gen/*USerClkGen?clkout4_buf" LOC = BUFGCTRL_X0Y6;
+INST "u_main_clk_gen/*USerClkGen?clkout3_buf" LOC = BUFGCTRL_X0Y7;
+INST "u_main_clk_gen/*USerClkGen?clkout2_buf" LOC = BUFGCTRL_X0Y8;
+INST "u_main_clk_gen/*USerClkGen?clkout1_buf" LOC = BUFGCTRL_X0Y9;
+INST "u_main_clk_gen/*USerClkGen?clkf_buf" LOC = BUFGCTRL_X0Y4;
+INST "u_main_clk_gen/*USerClkGen?clkin1_buf" LOC = BUFGCTRL_X0Y3;
+
+INST "u_main_clk_gen/*u_brdclk_pll?clkout2_buf" LOC = BUFGCTRL_X0Y15;
+
+INST "u_main_clk_gen/*BUFGMUX_dclk" LOC = BUFGCTRL_X0Y2;
+INST "u_main_clk_gen/*u_brdclk_pll?clkout1_buf" LOC = BUFGCTRL_X0Y1;
+INST "u_main_clk_gen/*u_brdclk_pll?clkf_buf" LOC = BUFGCTRL_X0Y0;
+
+INST "*u_xgbe2_ll_wrapper/bufg_clk125" LOC = BUFGCTRL_X0Y31;
+
+NET "mgtrefclk_p" TNM_NET = mgtrefclk;
+NET "mgtrefclk_n" TNM_NET = mgtrefclk;
+TIMESPEC TS_mgtrefclk = PERIOD "mgtrefclk" 8 ns HIGH 50% INPUT_JITTER 200 ps;
+
+NET "u_main_clk_gen/*USerClkGen/clkout0" MAXSKEW = 100 ps;
+NET "u_main_clk_gen/*USerClkGen/clkout1" MAXSKEW = 100 ps;
+NET "u_main_clk_gen/*USerClkGen/clkout2" MAXSKEW = 100 ps;
+NET "u_main_clk_gen/*USerClkGen/clkout3" MAXSKEW = 100 ps;
+NET "u_main_clk_gen/*USerClkGen/clkout4" MAXSKEW = 100 ps;
+
+NET "u_dcs_eth_top/EMACORE.u_xgbe2_ll_wrapper/clk125_o" TNM_NET = u_dcs_eth_top/EMACORE.u_xgbe2_ll_wrapper/clk125_o;
+TIMESPEC TS_u_dcs_eth_top_EMACORE_u_xgbe2_ll_wrapper_clk125_o = PERIOD "u_dcs_eth_top/EMACORE.u_xgbe2_ll_wrapper/clk125_o" 8 ns HIGH 50% INPUT_JITTER 100 ps;

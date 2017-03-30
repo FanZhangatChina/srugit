@@ -1,0 +1,862 @@
+####################################################################################################################
+##        DTC PORTS											   DTC PORTS
+#  ---------------------------               --------------------------- 
+#  ||		|		||     |	  	 ||					||		|		||     |	  	 ||						LVDS COAX PORTS
+#	||	0A	|	2B	||	4C  |	6D	 || ...  ~    ... ||	32	|	34	||	 36 |	 38 ||				----------------------------
+#  ||		|		||	  	 |	  	 ||					||		|		||	  	 |	  	 ||				|busy in||	out ||  in	||busy out|
+#  ---------------------------					---------------------------       ~    |  3    ||  1   ||  2   ||  0     |
+#  ||		|		||	  	 |	  	 ||					||		|		||	  	 |	  	 ||				|PX18	  ||PX16  ||PX17	||PX15    |
+#	||	1E	|	3F ||	 5G |	 7H || ...  ~    ... ||	33	|	35 ||	 37 |	 39 ||				----------------------------
+#  ||		|		||	  	 |	  	 ||					||		|		||	  	 |	  	 ||
+#  ---------------------------					---------------------------
+# LVDS order on the board.
+#154 152 155 153   DATA CLK RETURN TRIG(Near the RJ45 Jack)  
+#Note: Pin mappings from sru_job1943.brd. LVDS pins are swapped for layout.
+#
+# TRU place:  37,38,39
+###################################################################################################################
+#                                                                                                                 #
+#                                      DTC Link ports                                                             #
+#                                                                                                                 #
+################################# DTC PORT 1~8 (J14) ##############################################################
+#DTC PORT 1 
+## A1, F_RJ45_P<0>_4, QUAD_RJ45_IO_P<148>
+## A2, F_RJ45_N<0>_4, QUAD_RJ45_IO_N<148>
+NET "dtc_clk_p[0]" LOC = AP11;
+NET "dtc_clk_n[0]" LOC = AP12;
+## A3, F_RJ45_P<1>_4, QUAD_RJ45_IO_P<149>
+## A4, F_RJ45_P<2>_4, QUAD_RJ45_IO_P<150>
+## A5, F_RJ45_N<2>_4, QUAD_RJ45_IO_N<150>
+NET "dtc_data_n[0]" LOC = AC12;
+NET "dtc_data_p[0]" LOC = AC13;
+## A6, F_RJ45_N<1>_4, QUAD_RJ45_IO_N<149>
+NET "dtc_trig_p[0]" LOC = AD12;
+NET "dtc_trig_n[0]" LOC = AD11;
+## A7, F_RJ45_P<3>_4, QUAD_RJ45_IO_P<151>
+## A8, F_RJ45_N<3>_4, QUAD_RJ45_IO_N<151>
+NET "dtc_return_p[0]" LOC = AJ10;
+NET "dtc_return_n[0]" LOC = AH10;
+
+#DTC PORT 2 
+## E1, H_RJ45_P<0>_4, QUAD_RJ45_IO_P<156>
+## E2, H_RJ45_N<0>_4, QUAD_RJ45_IO_N<156>
+NET "dtc_clk_p[1]" LOC = AK12;
+NET "dtc_clk_n[1]" LOC = AJ12;
+## E3, H_RJ45_P<1>_4, QUAD_RJ45_IO_P<157>
+## E4, H_RJ45_P<2>_4, QUAD_RJ45_IO_P<158>
+## E5, H_RJ45_N<2>_4, QUAD_RJ45_IO_N<158>
+NET "dtc_data_n[1]" LOC = AK11;
+NET "dtc_data_p[1]" LOC = AJ11;
+## E6, H_RJ45_N<1>_4, QUAD_RJ45_IO_N<157>
+NET "dtc_trig_p[1]" LOC = AD14;
+NET "dtc_trig_n[1]" LOC = AC14;
+## E7, H_RJ45_P<3>_4, QUAD_RJ45_IO_P<159>
+## E8, H_RJ45_N<3>_4, QUAD_RJ45_IO_N<159>
+NET "dtc_return_p[1]" LOC = AE13;
+NET "dtc_return_n[1]" LOC = AE12;
+
+#DTC PORT 3 
+## B1, G_RJ45_P<0>_4, QUAD_RJ45_IO_P<152>
+## B2, G_RJ45_N<0>_4, QUAD_RJ45_IO_N<152>
+NET "dtc_clk_p[2]" LOC = AL11;
+NET "dtc_clk_n[2]" LOC = AM11;
+## B3, G_RJ45_P<1>_4, QUAD_RJ45_IO_P<153>
+## B4, G_RJ45_P<2>_4, QUAD_RJ45_IO_P<154>
+## B5, G_RJ45_N<2>_4, QUAD_RJ45_IO_N<154>
+NET "dtc_data_n[2]" LOC = AL10;
+NET "dtc_data_p[2]" LOC = AM10;
+## B6, G_RJ45_N<1>_4, QUAD_RJ45_IO_N<153>
+NET "dtc_trig_p[2]" LOC = AG11;
+NET "dtc_trig_n[2]" LOC = AG10;
+## B7, G_RJ45_P<3>_4, QUAD_RJ45_IO_P<155>
+## B8, G_RJ45_N<3>_4, QUAD_RJ45_IO_N<155>
+NET "dtc_return_p[2]" LOC = AF11;
+NET "dtc_return_n[2]" LOC = AE11;
+
+#DTC PORT 4 
+## F1, E_RJ45_P<0>_4, QUAD_RJ45_IO_P<144>
+## F2, E_RJ45_N<0>_4, QUAD_RJ45_IO_N<144>
+NET "dtc_clk_p[3]" LOC = AN13;
+NET "dtc_clk_n[3]" LOC = AM13;
+## F3, E_RJ45_P<1>_4, QUAD_RJ45_IO_P<145>
+## F4, E_RJ45_P<2>_4, QUAD_RJ45_IO_P<146>
+## F5, E_RJ45_N<2>_4, QUAD_RJ45_IO_N<146>
+NET "dtc_data_n[3]" LOC = AN12;
+NET "dtc_data_p[3]" LOC = AM12;
+## F6, E_RJ45_N<1>_4, QUAD_RJ45_IO_N<145>
+NET "dtc_trig_p[3]" LOC = AE14;
+NET "dtc_trig_n[3]" LOC = AF14;
+## F7, E_RJ45_P<3>_4, QUAD_RJ45_IO_P<147>
+## F8, E_RJ45_N<3>_4, QUAD_RJ45_IO_N<147>
+NET "dtc_return_p[3]" LOC = AF13;
+NET "dtc_return_n[3]" LOC = AG13;
+
+#DTC PORT 5
+## C1, G_RJ45_P<0>_3, QUAD_RJ45_IO_P<120>
+## C2, G_RJ45_N<0>_3, QUAD_RJ45_IO_N<120>
+NET "dtc_clk_p[4]" LOC = AL16;
+NET "dtc_clk_n[4]" LOC = AK16;
+## C3, G_RJ45_P<1>_3, QUAD_RJ45_IO_P<121>
+## C4, G_RJ45_P<2>_3, QUAD_RJ45_IO_P<122>
+## C5, G_RJ45_N<2>_3, QUAD_RJ45_IO_N<122>
+NET "dtc_data_n[4]" LOC = AK17;
+NET "dtc_data_p[4]" LOC = AK18;
+## C6, G_RJ45_N<1>_3, QUAD_RJ45_IO_N<121>
+NET "dtc_trig_p[4]" LOC = AE18;
+NET "dtc_trig_n[4]" LOC = AF18;
+## C7, G_RJ45_P<3>_3, QUAD_RJ45_IO_P<123>
+## C8, G_RJ45_N<3>_3, QUAD_RJ45_IO_N<123>
+NET "dtc_return_p[4]" LOC = AD17;
+NET "dtc_return_n[4]" LOC = AE17;
+
+#DTC PORT 6
+## G1, A_RJ45_P<0>_4, QUAD_RJ45_IO_P<128>
+## G2, A_RJ45_N<0>_4, QUAD_RJ45_IO_N<128>
+NET "dtc_clk_p[5]" LOC = AC18;
+NET "dtc_clk_n[5]" LOC = AC17;
+## G3, A_RJ45_P<1>_4, QUAD_RJ45_IO_P<129>
+## G4, A_RJ45_P<2>_4, QUAD_RJ45_IO_P<130>
+## G5, A_RJ45_N<2>_4, QUAD_RJ45_IO_N<130>
+NET "dtc_data_n[5]" LOC = AD15;
+NET "dtc_data_p[5]" LOC = AC15;
+## G6, A_RJ45_N<1>_4, QUAD_RJ45_IO_N<129>
+NET "dtc_trig_p[5]" LOC = AE16;
+NET "dtc_trig_n[5]" LOC = AD16;
+## G7, A_RJ45_P<3>_4, QUAD_RJ45_IO_P<131>
+## G8, A_RJ45_N<3>_4, QUAD_RJ45_IO_N<131>
+NET "dtc_return_p[5]" LOC = AH17;
+NET "dtc_return_n[5]" LOC = AG17;
+
+#DTC PORT 7
+## D1, C_RJ45_P<0>_4, QUAD_RJ45_IO_P<136>
+## D2, C_RJ45_N<0>_4, QUAD_RJ45_IO_N<136>
+NET "dtc_clk_p[6]" LOC = AL15;
+NET "dtc_clk_n[6]" LOC = AL14;
+## D3, C_RJ45_P<1>_4, QUAD_RJ45_IO_P<137>
+## D4, C_RJ45_P<2>_4, QUAD_RJ45_IO_P<138>
+## D5, C_RJ45_N<2>_4, QUAD_RJ45_IO_N<138>
+NET "dtc_data_n[6]" LOC = AJ14;
+NET "dtc_data_p[6]" LOC = AK14;
+## D6, C_RJ45_N<1>_4, QUAD_RJ45_IO_N<137>
+NET "dtc_trig_p[6]" LOC = AJ15;
+NET "dtc_trig_n[6]" LOC = AH15;
+## D7, C_RJ45_P<3>_4, QUAD_RJ45_IO_P<139>
+## D8, C_RJ45_N<3>_4, QUAD_RJ45_IO_N<139>
+NET "dtc_return_p[6]" LOC = AG15;
+NET "dtc_return_n[6]" LOC = AF15;
+
+#DTC PORT 8
+## H1, D_RJ45_P<0>_4, QUAD_RJ45_IO_P<140>
+## H2, D_RJ45_N<0>_4, QUAD_RJ45_IO_N<140>
+NET "dtc_clk_p[7]" LOC = AP14;
+NET "dtc_clk_n[7]" LOC = AN14;
+## H3, D_RJ45_P<1>_4, QUAD_RJ45_IO_P<141>
+## H4, D_RJ45_P<2>_4, QUAD_RJ45_IO_P<142>
+## H5, D_RJ45_N<2>_4, QUAD_RJ45_IO_N<142>
+NET "dtc_data_n[7]" LOC = AL13;
+NET "dtc_data_p[7]" LOC = AK13;
+## H6, D_RJ45_N<1>_4, QUAD_RJ45_IO_N<141>
+NET "dtc_trig_p[7]" LOC = AH13;
+NET "dtc_trig_n[7]" LOC = AH14;
+## H7, D_RJ45_P<3>_4, QUAD_RJ45_IO_P<143>
+## H8, D_RJ45_N<3>_4, QUAD_RJ45_IO_N<143>
+NET "dtc_return_p[7]" LOC = AG12;
+NET "dtc_return_n[7]" LOC = AH12;
+
+################################# DTC PORT 9~16 (J13) ##############################################################
+#DTC PORT 9
+## A1, H_RJ45_P<0>_3, QUAD_RJ45_IO_P<124>
+## A2, H_RJ45_N<0>_3, QUAD_RJ45_IO_N<124>
+NET "dtc_clk_p[8]" LOC = AM17;
+NET "dtc_clk_n[8]" LOC = AM16;
+## A3, H_RJ45_P<1>_3, QUAD_RJ45_IO_P<125>
+## A4, H_RJ45_P<2>_3, QUAD_RJ45_IO_P<126>
+## A5, H_RJ45_N<2>_3, QUAD_RJ45_IO_N<126>
+NET "dtc_data_n[8]" LOC = AP17;
+NET "dtc_data_p[8]" LOC = AN17;
+## A6, H_RJ45_N<1>_3, QUAD_RJ45_IO_N<125>
+NET "dtc_trig_p[8]" LOC = AJ19;
+NET "dtc_trig_n[8]" LOC = AH19;
+## A7, H_RJ45_P<3>_3, QUAD_RJ45_IO_P<127>
+## A8, H_RJ45_N<3>_3, QUAD_RJ45_IO_N<127>
+NET "dtc_return_p[8]" LOC = AH18;
+NET "dtc_return_n[8]" LOC = AG18;
+
+#DTC PORT 10
+## E1, F_RJ45_P<0>_3, QUAD_RJ45_IO_P<116>
+## E2, F_RJ45_N<0>_3, QUAD_RJ45_IO_N<116>
+NET "dtc_clk_p[9]" LOC = AP19;
+NET "dtc_clk_n[9]" LOC = AN18;
+## E3, F_RJ45_P<1>_3, QUAD_RJ45_IO_P<117>
+## E4, F_RJ45_P<2>_3, QUAD_RJ45_IO_P<118>
+## E5, F_RJ45_N<2>_3, QUAD_RJ45_IO_N<118>
+NET "dtc_data_n[9]" LOC = AL18;
+NET "dtc_data_p[9]" LOC = AM18;
+## E6, F_RJ45_N<1>_3, QUAD_RJ45_IO_N<117>
+NET "dtc_trig_p[9]" LOC = AG22;
+NET "dtc_trig_n[9]" LOC = AH22;
+## E7, F_RJ45_P<3>_3, QUAD_RJ45_IO_P<119>
+## E8, F_RJ45_N<3>_3, QUAD_RJ45_IO_N<119>
+NET "dtc_return_p[9]" LOC = AE21;
+NET "dtc_return_n[9]" LOC = AD21;
+
+#DTC PORT 11
+## B1, B_RJ45_P<0>_4, QUAD_RJ45_IO_P<132>
+## B2, B_RJ45_N<0>_4, QUAD_RJ45_IO_N<132>
+NET "dtc_clk_p[10]" LOC = AP16;
+NET "dtc_clk_n[10]" LOC = AP15;
+## B3, B_RJ45_P<1>_4, QUAD_RJ45_IO_P<133>
+## B4, B_RJ45_P<2>_4, QUAD_RJ45_IO_P<134>
+## B5, B_RJ45_N<2>_4, QUAD_RJ45_IO_N<134>
+NET "dtc_data_n[10]" LOC = AM15;
+NET "dtc_data_p[10]" LOC = AN15;
+## B6, B_RJ45_N<1>_4, QUAD_RJ45_IO_N<133>
+NET "dtc_trig_p[10]" LOC = AJ17;
+NET "dtc_trig_n[10]" LOC = AJ16;
+## B7, B_RJ45_P<3>_4, QUAD_RJ45_IO_P<135>
+## B8, B_RJ45_N<3>_4, QUAD_RJ45_IO_N<135>
+NET "dtc_return_p[10]" LOC = AG16;
+NET "dtc_return_n[10]" LOC = AF16;
+
+#DTC PORT 12
+## F1, D_RJ45_P<0>_3, QUAD_RJ45_IO_P<108>
+## F2, D_RJ45_N<0>_3, QUAD_RJ45_IO_N<108>
+NET "dtc_clk_p[11]" LOC = AF20;
+NET "dtc_clk_n[11]" LOC = AF21;
+## F3, D_RJ45_P<1>_3, QUAD_RJ45_IO_P<109>
+## F4, D_RJ45_P<2>_3, QUAD_RJ45_IO_P<110>
+## F5, D_RJ45_N<2>_3, QUAD_RJ45_IO_N<110>
+NET "dtc_data_n[11]" LOC = AP21;
+NET "dtc_data_p[11]" LOC = AP20;
+## F6, D_RJ45_N<1>_3, QUAD_RJ45_IO_N<109>
+NET "dtc_trig_p[11]" LOC = AK19;
+NET "dtc_trig_n[11]" LOC = AL19;
+## F7, D_RJ45_P<3>_3, QUAD_RJ45_IO_P<111>
+## F8, D_RJ45_N<3>_3, QUAD_RJ45_IO_N<111>
+NET "dtc_return_p[11]" LOC = AF19;
+NET "dtc_return_n[11]" LOC = AE19;
+
+#DTC PORT 13
+## C1, E_RJ45_P<0>_3, QUAD_RJ45_IO_P<112>
+## C2, E_RJ45_N<0>_3, QUAD_RJ45_IO_N<112>
+NET "dtc_clk_p[12]" LOC = AM20;
+NET "dtc_clk_n[12]" LOC = AL20;
+## C3, E_RJ45_P<1>_3, QUAD_RJ45_IO_P<113>
+## C4, E_RJ45_P<2>_3, QUAD_RJ45_IO_P<114>
+## C5, E_RJ45_N<2>_3, QUAD_RJ45_IO_N<114>
+NET "dtc_data_n[12]" LOC = AN20;
+NET "dtc_data_p[12]" LOC = AN19;
+## C6, E_RJ45_N<1>_3, QUAD_RJ45_IO_N<113>
+NET "dtc_trig_p[12]" LOC = AC20;
+NET "dtc_trig_n[12]" LOC = AD20;
+## C7, E_RJ45_P<3>_3, QUAD_RJ45_IO_P<115>
+## C8, E_RJ45_N<3>_3, QUAD_RJ45_IO_N<115>
+NET "dtc_return_p[12]" LOC = AK22;
+NET "dtc_return_n[12]" LOC = AJ22;
+
+#DTC PORT 14
+## G1, B_RJ45_P<0>_3, QUAD_RJ45_IO_P<100>
+## G2, B_RJ45_N<0>_3, QUAD_RJ45_IO_N<100>
+NET "dtc_clk_p[13]" LOC = AP22;
+NET "dtc_clk_n[13]" LOC = AN23;
+## G3, B_RJ45_P<1>_3, QUAD_RJ45_IO_P<101>
+## G4, B_RJ45_P<2>_3, QUAD_RJ45_IO_P<102>
+## G5, B_RJ45_N<2>_3, QUAD_RJ45_IO_N<102>
+NET "dtc_data_n[13]" LOC = AN22;
+NET "dtc_data_p[13]" LOC = AM22;
+## G6, B_RJ45_N<1>_3, QUAD_RJ45_IO_N<101>
+NET "dtc_trig_p[13]" LOC = AG20;
+NET "dtc_trig_n[13]" LOC = AG21;
+## G7, B_RJ45_P<3>_3, QUAD_RJ45_IO_P<103>
+## G8, B_RJ45_N<3>_3, QUAD_RJ45_IO_N<103>
+NET "dtc_return_p[13]" LOC = AK21;
+NET "dtc_return_n[13]" LOC = AJ21;
+
+#DTC PORT 15
+## D1, C_RJ45_P<0>_3, QUAD_RJ45_IO_P<104>
+## D2, C_RJ45_N<0>_3, QUAD_RJ45_IO_N<104>
+NET "dtc_clk_p[14]" LOC = AM23;
+NET "dtc_clk_n[14]" LOC = AL23;
+## D3, C_RJ45_P<1>_3, QUAD_RJ45_IO_P<105>
+## D4, C_RJ45_P<2>_3, QUAD_RJ45_IO_P<106>
+## D5, C_RJ45_N<2>_3, QUAD_RJ45_IO_N<106>
+NET "dtc_data_n[14]" LOC = AL21;
+NET "dtc_data_p[14]" LOC = AM21;
+## D6, C_RJ45_N<1>_3, QUAD_RJ45_IO_N<105>
+NET "dtc_trig_p[14]" LOC = AC19;
+NET "dtc_trig_n[14]" LOC = AD19;
+## D7, C_RJ45_P<3>_3, QUAD_RJ45_IO_P<107>
+## D8, C_RJ45_N<3>_3, QUAD_RJ45_IO_N<107>
+NET "dtc_return_p[14]" LOC = AJ20;
+NET "dtc_return_n[14]" LOC = AH20;
+
+#DTC PORT 16
+## H1, E_RJ45_P<0>_2, QUAD_RJ45_IO_P<80>
+## H2, E_RJ45_N<0>_2, QUAD_RJ45_IO_N<80>
+NET "dtc_clk_p[15]" LOC = AP25;
+NET "dtc_clk_n[15]" LOC = AP24;
+## H3, E_RJ45_P<1>_2, QUAD_RJ45_IO_P<81>
+## H4, E_RJ45_P<2>_2, QUAD_RJ45_IO_P<82>
+## H5, E_RJ45_N<2>_2, QUAD_RJ45_IO_N<82>
+NET "dtc_data_n[15]" LOC = AN24;
+NET "dtc_data_p[15]" LOC = AN25;
+## H6, E_RJ45_N<1>_2, QUAD_RJ45_IO_N<81>
+NET "dtc_trig_p[15]" LOC = AK23;
+NET "dtc_trig_n[15]" LOC = AL24;
+## H7, E_RJ45_P<3>_2, QUAD_RJ45_IO_P<83>
+## H8, E_RJ45_N<3>_2, QUAD_RJ45_IO_N<83>
+NET "dtc_return_p[15]" LOC = AM25;
+NET "dtc_return_n[15]" LOC = AL25;
+
+################################# DTC PORT 17~24 (J1) ##############################################################
+#DTC PORT 17
+## A1, G_RJ45_P<0>_2, QUAD_RJ45_IO_P<88>
+## A2, G_RJ45_N<0>_2, QUAD_RJ45_IO_N<88>
+NET "dtc_clk_p[16]" LOC = AH23;
+NET "dtc_clk_n[16]" LOC = AH24;
+## A3, G_RJ45_P<1>_2, QUAD_RJ45_IO_P<89>
+## A4, G_RJ45_P<2>_2, QUAD_RJ45_IO_P<90>
+## A5, G_RJ45_N<2>_2, QUAD_RJ45_IO_N<90>
+NET "dtc_data_n[16]" LOC = AM27;
+NET "dtc_data_p[16]" LOC = AN27;
+## A6, G_RJ45_N<1>_2, QUAD_RJ45_IO_N<89>
+NET "dtc_trig_p[16]" LOC = AK27;
+NET "dtc_trig_n[16]" LOC = AJ27;
+## A7, G_RJ45_P<3>_2, QUAD_RJ45_IO_P<91>
+## A8, G_RJ45_N<3>_2, QUAD_RJ45_IO_N<91>
+NET "dtc_return_p[16]" LOC = AH25;
+NET "dtc_return_n[16]" LOC = AJ25;
+
+#DTC PORT 18
+## E1, F_RJ45_P<0>_2, QUAD_RJ45_IO_P<84>
+## E2, F_RJ45_N<0>_2, QUAD_RJ45_IO_N<84>
+NET "dtc_clk_p[17]" LOC = AP27;
+NET "dtc_clk_n[17]" LOC = AP26;
+## E3, F_RJ45_P<1>_2, QUAD_RJ45_IO_P<85>
+## E4, F_RJ45_P<2>_2, QUAD_RJ45_IO_P<86>
+## E5, F_RJ45_N<2>_2, QUAD_RJ45_IO_N<86>
+NET "dtc_data_n[17]" LOC = AM26;
+NET "dtc_data_p[17]" LOC = AL26;
+## E6, F_RJ45_N<1>_2, QUAD_RJ45_IO_N<85>
+NET "dtc_trig_p[17]" LOC = AJ24;
+NET "dtc_trig_n[17]" LOC = AK24;
+## E7, F_RJ45_P<3>_2, QUAD_RJ45_IO_P<87>
+## E8, F_RJ45_N<3>_2, QUAD_RJ45_IO_N<87>
+NET "dtc_return_p[17]" LOC = AK26;
+NET "dtc_return_n[17]" LOC = AJ26;
+
+#DTC PORT 19
+## B1, H_RJ45_P<0>_2, QUAD_RJ45_IO_P<92>
+## B2, H_RJ45_N<0>_2, QUAD_RJ45_IO_N<92>
+NET "dtc_clk_p[18]" LOC = AN28;
+NET "dtc_clk_n[18]" LOC = AM28;
+## B3, H_RJ45_P<1>_2, QUAD_RJ45_IO_P<93>
+## B4, H_RJ45_P<2>_2, QUAD_RJ45_IO_P<94>
+## B5, H_RJ45_N<2>_2, QUAD_RJ45_IO_N<94>
+NET "dtc_data_n[18]" LOC = AP29;
+NET "dtc_data_p[18]" LOC = AN29;
+## B6, H_RJ45_N<1>_2, QUAD_RJ45_IO_N<93>
+NET "dtc_trig_p[18]" LOC = AL28;
+NET "dtc_trig_n[18]" LOC = AK28;
+## B7, H_RJ45_P<3>_2, QUAD_RJ45_IO_P<95>
+## B8, H_RJ45_N<3>_2, QUAD_RJ45_IO_N<95>
+NET "dtc_return_p[18]" LOC = AL29;
+NET "dtc_return_n[18]" LOC = AK29;
+
+#DTC PORT 20
+## F1, A_RJ45_P<0>_3, QUAD_RJ45_IO_P<96>
+## F2, A_RJ45_N<0>_3, QUAD_RJ45_IO_N<96>
+NET "dtc_clk_p[19]" LOC = AP30;
+NET "dtc_clk_n[19]" LOC = AP31;
+## F3, A_RJ45_P<1>_3, QUAD_RJ45_IO_P<97>
+## F4, A_RJ45_P<2>_3, QUAD_RJ45_IO_P<98>
+## F5, A_RJ45_N<2>_3, QUAD_RJ45_IO_N<98>
+NET "dtc_data_n[19]" LOC = AM30;
+NET "dtc_data_p[19]" LOC = AN30;
+## F6, A_RJ45_N<1>_3, QUAD_RJ45_IO_N<97>
+NET "dtc_trig_p[19]" LOC = AG25;
+NET "dtc_trig_n[19]" LOC = AG26;
+## F7, A_RJ45_P<3>_3, QUAD_RJ45_IO_P<99>
+## F8, A_RJ45_N<3>_3, QUAD_RJ45_IO_N<99>
+NET "dtc_return_p[19]" LOC = AH27;
+NET "dtc_return_n[19]" LOC = AH28;
+
+#DTC PORT 21
+## C1, A_RJ45_P<0>_2, QUAD_RJ45_IO_P<64>
+## C2, A_RJ45_N<0>_2, QUAD_RJ45_IO_N<64>
+NET "dtc_clk_p[20]" LOC = AL31;
+NET "dtc_clk_n[20]" LOC = AK31;
+## C3, A_RJ45_P<1>_2, QUAD_RJ45_IO_P<65>
+## C4, A_RJ45_P<2>_2, QUAD_RJ45_IO_P<66>
+## C5, A_RJ45_N<2>_2, QUAD_RJ45_IO_N<66>
+NET "dtc_data_n[20]" LOC = AJ30;
+NET "dtc_data_p[20]" LOC = AJ29;
+## C6, A_RJ45_N<1>_2, QUAD_RJ45_IO_N<65>
+NET "dtc_trig_p[20]" LOC = AK33;
+NET "dtc_trig_n[20]" LOC = AK32;
+## C7, A_RJ45_P<3>_2, QUAD_RJ45_IO_P<67>
+## C8, A_RJ45_N<3>_2, QUAD_RJ45_IO_N<67>
+NET "dtc_return_p[20]" LOC = AJ31;
+NET "dtc_return_n[20]" LOC = AJ32;
+
+#DTC PORT 22
+## G1, B_RJ45_P<0>_2, QUAD_RJ45_IO_P<68>
+## G2, B_RJ45_N<0>_2, QUAD_RJ45_IO_N<68>
+NET "dtc_clk_p[21]" LOC = AF26;
+NET "dtc_clk_n[21]" LOC = AE26;
+## G3, B_RJ45_P<1>_2, QUAD_RJ45_IO_P<69>
+## G4, B_RJ45_P<2>_2, QUAD_RJ45_IO_P<70>
+## G5, B_RJ45_N<2>_2, QUAD_RJ45_IO_N<70>
+NET "dtc_data_n[21]" LOC = AG28;
+NET "dtc_data_p[21]" LOC = AG27;
+## G6, B_RJ45_N<1>_2, QUAD_RJ45_IO_N<69>
+NET "dtc_trig_p[21]" LOC = AF30;
+NET "dtc_trig_n[21]" LOC = AG30;
+## G7, B_RJ45_P<3>_2, QUAD_RJ45_IO_P<71>
+## G8, B_RJ45_N<3>_2, QUAD_RJ45_IO_N<71>
+NET "dtc_return_p[21]" LOC = AN33;
+NET "dtc_return_n[21]" LOC = AN34;
+
+#DTC PORT 23
+## D1, H_RJ45_P<0>_1, QUAD_RJ45_IO_P<60>
+## D2, H_RJ45_N<0>_1, QUAD_RJ45_IO_N<60>
+NET "dtc_clk_p[22]" LOC = AL30;
+NET "dtc_clk_n[22]" LOC = AM31;
+## D3, H_RJ45_P<1>_1, QUAD_RJ45_IO_P<61>
+## D4, H_RJ45_P<2>_1, QUAD_RJ45_IO_P<62>
+## D5, H_RJ45_N<2>_1, QUAD_RJ45_IO_N<62>
+NET "dtc_data_n[22]" LOC = AM32;
+NET "dtc_data_p[22]" LOC = AN32;
+## D6, H_RJ45_N<1>_1, QUAD_RJ45_IO_N<61>
+NET "dtc_trig_p[22]" LOC = AP32;
+NET "dtc_trig_n[22]" LOC = AP33;
+## D7, H_RJ45_P<3>_1, QUAD_RJ45_IO_P<63>
+## D8, H_RJ45_N<3>_1, QUAD_RJ45_IO_N<63>
+NET "dtc_return_p[22]" LOC = AM33;
+NET "dtc_return_n[22]" LOC = AL33;
+
+#DTC PORT 24
+## H1, D_RJ45_P<0>_2, QUAD_RJ45_IO_P<76>
+## H2, D_RJ45_N<0>_2, QUAD_RJ45_IO_N<76>
+NET "dtc_clk_p[23]" LOC = AE28;
+NET "dtc_clk_n[23]" LOC = AE29;
+## H3, D_RJ45_P<1>_2, QUAD_RJ45_IO_P<77>
+## H4, D_RJ45_P<2>_2, QUAD_RJ45_IO_P<78>
+## H5, D_RJ45_N<2>_2, QUAD_RJ45_IO_N<78>
+NET "dtc_data_n[23]" LOC = AD27;
+NET "dtc_data_p[23]" LOC = AE27;
+## H6, D_RJ45_N<1>_2, QUAD_RJ45_IO_N<77>
+NET "dtc_trig_p[23]" LOC = AH33;
+NET "dtc_trig_n[23]" LOC = AH32;
+## H7, D_RJ45_P<3>_2, QUAD_RJ45_IO_P<79>
+## H8, D_RJ45_N<3>_2, QUAD_RJ45_IO_N<79>
+NET "dtc_return_p[23]" LOC = AD25;
+NET "dtc_return_n[23]" LOC = AD26;
+
+################################# DTC PORT 25~32 (J12) ##############################################################
+#DTC PORT 25
+## A1, F_RJ45_P<0>, QUAD_RJ45_IO_P<20>
+## A2, F_RJ45_N<0>, QUAD_RJ45_IO_N<20>
+NET "dtc_clk_p[24]" LOC = W27;
+NET "dtc_clk_n[24]" LOC = W26;
+## A3, F_RJ45_P<1>, QUAD_RJ45_IO_P<21>
+## A4, F_RJ45_P<2>, QUAD_RJ45_IO_P<22>
+## A5, F_RJ45_N<2>, QUAD_RJ45_IO_N<22>
+NET "dtc_data_n[24]" LOC = Y27;
+NET "dtc_data_p[24]" LOC = Y28;
+## A6, F_RJ45_N<1>, QUAD_RJ45_IO_N<21>
+NET "dtc_trig_p[24]" LOC = W25;
+NET "dtc_trig_n[24]" LOC = V25;
+## A7, F_RJ45_P<3>, QUAD_RJ45_IO_P<23>
+## A8, F_RJ45_N<3>, QUAD_RJ45_IO_N<23>
+NET "dtc_return_p[24]" LOC = W31;
+NET "dtc_return_n[24]" LOC = W32;
+
+#DTC PORT 26
+## E1, C_RJ45_P<0>_2, QUAD_RJ45_IO_P<72>
+## E2, C_RJ45_N<0>_2, QUAD_RJ45_IO_N<72>
+NET "dtc_clk_p[25]" LOC = AH29;
+NET "dtc_clk_n[25]" LOC = AH30;
+## E3, C_RJ45_P<1>_2, QUAD_RJ45_IO_P<73>
+## E4, C_RJ45_P<2>_2, QUAD_RJ45_IO_P<74>
+## E5, C_RJ45_N<2>_2, QUAD_RJ45_IO_N<74>
+NET "dtc_data_n[25]" LOC = AF29;
+NET "dtc_data_p[25]" LOC = AF28;
+## E6, C_RJ45_N<1>_2, QUAD_RJ45_IO_N<73>
+NET "dtc_trig_p[25]" LOC = AL34;
+NET "dtc_trig_n[25]" LOC = AK34;
+## E7, C_RJ45_P<3>_2, QUAD_RJ45_IO_P<75>
+## E8, C_RJ45_N<3>_2, QUAD_RJ45_IO_N<75>
+NET "dtc_return_p[25]" LOC = AJ34;
+NET "dtc_return_n[25]" LOC = AH34;
+
+#DTC PORT 27
+## B1, C_RJ45_P<0>_1, QUAD_RJ45_IO_P<40>
+## B2, C_RJ45_N<0>_1, QUAD_RJ45_IO_N<40>
+NET "dtc_clk_p[26]" LOC = AB25;
+NET "dtc_clk_n[26]" LOC = AC25;
+## B3, C_RJ45_P<1>_1, QUAD_RJ45_IO_P<41>
+## B4, C_RJ45_P<2>_1, QUAD_RJ45_IO_P<42>
+## B5, C_RJ45_N<2>_1, QUAD_RJ45_IO_N<42>
+NET "dtc_data_n[26]" LOC = AB26;
+NET "dtc_data_p[26]" LOC = AA26;
+## B6, C_RJ45_N<1>_1, QUAD_RJ45_IO_N<41>
+NET "dtc_trig_p[26]" LOC = AG31;
+NET "dtc_trig_n[26]" LOC = AF31;
+## B7, C_RJ45_P<3>_1, QUAD_RJ45_IO_P<43>
+## B8, C_RJ45_N<3>_1, QUAD_RJ45_IO_N<43>
+NET "dtc_return_p[26]" LOC = AG33;
+NET "dtc_return_n[26]" LOC = AG32;
+
+#DTC PORT 28
+## F1, F_RJ45_P<0>_1, QUAD_RJ45_IO_P<52>
+## F2, F_RJ45_N<0>_1, QUAD_RJ45_IO_N<52>
+NET "dtc_clk_p[27]" LOC = AA28;
+NET "dtc_clk_n[27]" LOC = AA29;
+## F3, F_RJ45_P<1>_1, QUAD_RJ45_IO_P<53>
+## F4, F_RJ45_P<2>_1, QUAD_RJ45_IO_P<54>
+## F5, F_RJ45_N<2>_1, QUAD_RJ45_IO_N<54>
+NET "dtc_data_n[27]" LOC = AD31;
+NET "dtc_data_p[27]" LOC = AE31;
+## F6, F_RJ45_N<1>_1, QUAD_RJ45_IO_N<53>
+NET "dtc_trig_p[27]" LOC = AA25;
+NET "dtc_trig_n[27]" LOC = Y26;
+## F7, F_RJ45_P<3>_1, QUAD_RJ45_IO_P<55>
+## F8, F_RJ45_N<3>_1, QUAD_RJ45_IO_N<55>
+NET "dtc_return_p[27]" LOC = AC33;
+NET "dtc_return_n[27]" LOC = AB33;
+
+#DTC PORT 29
+## C1, D_RJ45_P<0>_1, QUAD_RJ45_IO_P<44>
+## C2, D_RJ45_N<0>_1, QUAD_RJ45_IO_N<44>
+NET "dtc_clk_p[28]" LOC = AB27;
+NET "dtc_clk_n[28]" LOC = AC27;
+## C3, D_RJ45_P<1>_1, QUAD_RJ45_IO_P<45>
+## C4, D_RJ45_P<2>_1, QUAD_RJ45_IO_P<46>
+## C5, D_RJ45_N<2>_1, QUAD_RJ45_IO_N<46>
+NET "dtc_data_n[28]" LOC = AC28;
+NET "dtc_data_p[28]" LOC = AB28;
+## C6, D_RJ45_N<1>_1, QUAD_RJ45_IO_N<45>
+NET "dtc_trig_p[28]" LOC = AD32;
+NET "dtc_trig_n[28]" LOC = AE32;
+## C7, D_RJ45_P<3>_1, QUAD_RJ45_IO_P<47>
+## C8, D_RJ45_N<3>_1, QUAD_RJ45_IO_N<47>
+NET "dtc_return_p[28]" LOC = AB32;
+NET "dtc_return_n[28]" LOC = AC32;
+
+#DTC PORT 30
+## G1, G_RJ45_P<0>_1, QUAD_RJ45_IO_P<56>
+## G2, G_RJ45_N<0>_1, QUAD_RJ45_IO_N<56>
+NET "dtc_clk_p[29]" LOC = AB30;
+NET "dtc_clk_n[29]" LOC = AB31;
+## G3, G_RJ45_P<1>_1, QUAD_RJ45_IO_P<57>
+## G4, G_RJ45_P<2>_1, QUAD_RJ45_IO_P<58>
+## G5, G_RJ45_N<2>_1, QUAD_RJ45_IO_N<58>
+NET "dtc_data_n[29]" LOC = AA31;
+NET "dtc_data_p[29]" LOC = AA30;
+## G6, G_RJ45_N<1>_1, QUAD_RJ45_IO_N<57>
+NET "dtc_trig_p[29]" LOC = AD34;
+NET "dtc_trig_n[29]" LOC = AC34;
+## G7, G_RJ45_P<3>_1, QUAD_RJ45_IO_P<59>
+## G8, G_RJ45_N<3>_1, QUAD_RJ45_IO_N<59>
+NET "dtc_return_p[29]" LOC = AA34;
+NET "dtc_return_n[29]" LOC = AA33;
+
+#DTC PORT 31
+## D1, E_RJ45_P<0>_1, QUAD_RJ45_IO_P<48>
+## D2, E_RJ45_N<0>_1, QUAD_RJ45_IO_N<48>
+NET "dtc_clk_p[30]" LOC = AD29;
+NET "dtc_clk_n[30]" LOC = AC29;
+## D3, E_RJ45_P<1>_1, QUAD_RJ45_IO_P<49>
+## D4, E_RJ45_P<2>_1, QUAD_RJ45_IO_P<50>
+## D5, E_RJ45_N<2>_1, QUAD_RJ45_IO_N<50>
+NET "dtc_data_n[30]" LOC = AC30;
+NET "dtc_data_p[30]" LOC = AD30;
+## D6, E_RJ45_N<1>_1, QUAD_RJ45_IO_N<49>
+NET "dtc_trig_p[30]" LOC = AE33;
+NET "dtc_trig_n[30]" LOC = AF33;
+## D7, E_RJ45_P<3>_1, QUAD_RJ45_IO_P<51>
+## D8, E_RJ45_N<3>_1, QUAD_RJ45_IO_N<51>
+NET "dtc_return_p[30]" LOC = AE34;
+NET "dtc_return_n[30]" LOC = AF34;
+
+#DTC PORT 32
+## H1, B_RJ45_P<0>, QUAD_RJ45_IO_P<4>
+## H2, B_RJ45_N<0>, QUAD_RJ45_IO_N<4>
+NET "dtc_clk_p[31]" LOC = R26;
+NET "dtc_clk_n[31]" LOC = T26;
+## H3, B_RJ45_P<1>, QUAD_RJ45_IO_P<5>
+## H4, B_RJ45_P<2>, QUAD_RJ45_IO_P<6>
+## H5, B_RJ45_N<2>, QUAD_RJ45_IO_N<6>
+NET "dtc_data_n[31]" LOC = R27;
+NET "dtc_data_p[31]" LOC = R28;
+## H6, B_RJ45_N<1>, QUAD_RJ45_IO_N<5>
+NET "dtc_trig_p[31]" LOC = R31;
+NET "dtc_trig_n[31]" LOC = R32;
+## H7, B_RJ45_P<3>, QUAD_RJ45_IO_P<7>
+## H8, B_RJ45_N<3>, QUAD_RJ45_IO_N<7>
+NET "dtc_return_p[31]" LOC = P25;
+NET "dtc_return_n[31]" LOC = P26;
+
+################################# DTC PORT 33~40 (J11) ##############################################################
+#DTC PORT 33
+## A1, H_RJ45_P<0>, QUAD_RJ45_IO_P<28>
+## A2, H_RJ45_N<0>, QUAD_RJ45_IO_N<28>
+NET "dtc_clk_p[32]" LOC = V28;
+NET "dtc_clk_n[32]" LOC = V27;
+## A3, H_RJ45_P<1>, QUAD_RJ45_IO_P<29>
+## A4, H_RJ45_P<2>, QUAD_RJ45_IO_P<30>
+## A5, H_RJ45_N<2>, QUAD_RJ45_IO_N<30>
+NET "dtc_data_n[32]" LOC = W30;
+NET "dtc_data_p[32]" LOC = V30;
+## A6, H_RJ45_N<1>, QUAD_RJ45_IO_N<29>
+NET "dtc_trig_p[32]" LOC = V34;
+NET "dtc_trig_n[32]" LOC = W34;
+## A7, H_RJ45_P<3>, QUAD_RJ45_IO_P<31>
+## A8, H_RJ45_N<3>, QUAD_RJ45_IO_N<31>
+NET "dtc_return_p[32]" LOC = U31;
+NET "dtc_return_n[32]" LOC = U30;
+
+#DTC PORT 34
+## E1, G_RJ45_P<0>, QUAD_RJ45_IO_P<24>
+## E2, G_RJ45_N<0>, QUAD_RJ45_IO_N<24>
+NET "dtc_clk_p[33]" LOC = W29;
+NET "dtc_clk_n[33]" LOC = Y29;
+## E3, G_RJ45_P<1>, QUAD_RJ45_IO_P<25>
+## E4, G_RJ45_P<2>, QUAD_RJ45_IO_P<26>
+## E5, G_RJ45_N<2>, QUAD_RJ45_IO_N<26>
+NET "dtc_data_n[33]" LOC = Y31;
+NET "dtc_data_p[33]" LOC = Y32;
+## E6, G_RJ45_N<1>, QUAD_RJ45_IO_N<25>
+NET "dtc_trig_p[33]" LOC = Y33;
+NET "dtc_trig_n[33]" LOC = Y34;
+## E7, G_RJ45_P<3>, QUAD_RJ45_IO_P<27>
+## E8, G_RJ45_N<3>, QUAD_RJ45_IO_N<27>
+NET "dtc_return_p[33]" LOC = V32;
+NET "dtc_return_n[33]" LOC = V33;
+
+#DTC PORT 35
+## B1, A_RJ45_P<0>_1, QUAD_RJ45_IO_P<32>
+## B2, A_RJ45_N<0>_1, QUAD_RJ45_IO_N<32>
+NET "dtc_clk_p[34]" LOC = U28;
+NET "dtc_clk_n[34]" LOC = V29;
+## B3, A_RJ45_P<1>_1, QUAD_RJ45_IO_P<33>
+## B4, A_RJ45_P<2>_1, QUAD_RJ45_IO_P<34>
+## B5, A_RJ45_N<2>_1, QUAD_RJ45_IO_N<34>
+NET "dtc_data_n[34]" LOC = U27;
+NET "dtc_data_p[34]" LOC = U26;
+## B6, A_RJ45_N<1>_1, QUAD_RJ45_IO_N<33>
+NET "dtc_trig_p[34]" LOC = U33;
+NET "dtc_trig_n[34]" LOC = U32;
+## B7, A_RJ45_P<3>_1, QUAD_RJ45_IO_P<35>
+## B8, A_RJ45_N<3>_1, QUAD_RJ45_IO_N<35>
+NET "dtc_return_p[34]" LOC = T33;
+NET "dtc_return_n[34]" LOC = T34;
+
+#DTC PORT 36
+## F1, B_RJ45_P<0>_1, QUAD_RJ45_IO_P<36>
+## F2, B_RJ45_N<0>_1, QUAD_RJ45_IO_N<36>
+NET "dtc_clk_p[35]" LOC = T30;
+NET "dtc_clk_n[35]" LOC = T31;
+## F3, B_RJ45_P<1>_1, QUAD_RJ45_IO_P<37>
+## F4, B_RJ45_P<2>_1, QUAD_RJ45_IO_P<38>
+## F5, B_RJ45_N<2>_1, QUAD_RJ45_IO_N<38>
+NET "dtc_data_n[35]" LOC = T29;
+NET "dtc_data_p[35]" LOC = T28;
+## F6, B_RJ45_N<1>_1, QUAD_RJ45_IO_N<37>
+NET "dtc_trig_p[35]" LOC = R33;
+NET "dtc_trig_n[35]" LOC = R34;
+## F7, B_RJ45_P<3>_1, QUAD_RJ45_IO_P<39>
+## F8, B_RJ45_N<3>_1, QUAD_RJ45_IO_N<39>
+NET "dtc_return_p[35]" LOC = U25;
+NET "dtc_return_n[35]" LOC = T25;
+
+#DTC PORT 37
+## C1, A_RJ45_P<0>, QUAD_RJ45_IO_P<0>
+## C2, A_RJ45_N<0>, QUAD_RJ45_IO_N<0>
+NET "dtc_clk_p[36]" LOC = P29;
+NET "dtc_clk_n[36]" LOC = R29;
+## C3, A_RJ45_P<1>, QUAD_RJ45_IO_P<1>
+## C4, A_RJ45_P<2>, QUAD_RJ45_IO_P<2>
+## C5, A_RJ45_N<2>, QUAD_RJ45_IO_N<2>
+NET "dtc_data_n[36]" LOC = N30;
+NET "dtc_data_p[36]" LOC = M30;
+## C6, A_RJ45_N<1>, QUAD_RJ45_IO_N<1>
+NET "dtc_trig_p[36]" LOC = N34;
+NET "dtc_trig_n[36]" LOC = P34;
+## C7, A_RJ45_P<3>, QUAD_RJ45_IO_P<3>
+## C8, A_RJ45_N<3>, QUAD_RJ45_IO_N<3>
+NET "dtc_return_p[36]" LOC = K34;
+NET "dtc_return_n[36]" LOC = L34;
+
+#DTC PORT 38
+## G1, C_RJ45_P<0>, QUAD_RJ45_IO_P<8>
+## G2, C_RJ45_N<0>, QUAD_RJ45_IO_N<8>
+NET "dtc_clk_p[37]" LOC = L29;
+NET "dtc_clk_n[37]" LOC = L30;
+## G3, C_RJ45_P<1>, QUAD_RJ45_IO_P<9>
+## G4, C_RJ45_P<2>, QUAD_RJ45_IO_P<10>
+## G5, C_RJ45_N<2>, QUAD_RJ45_IO_N<10>
+NET "dtc_data_n[37]" LOC = N29;
+NET "dtc_data_p[37]" LOC = N28;
+## G6, C_RJ45_N<1>, QUAD_RJ45_IO_N<9>
+NET "dtc_trig_p[37]" LOC = N33;
+NET "dtc_trig_n[37]" LOC = M33;
+## G7, C_RJ45_P<3>, QUAD_RJ45_IO_P<11>
+## G8, C_RJ45_N<3>, QUAD_RJ45_IO_N<11>
+NET "dtc_return_p[37]" LOC = N32;
+NET "dtc_return_n[37]" LOC = P32;
+
+#DTC PORT 39
+## D1, E_RJ45_P<0>, QUAD_RJ45_IO_P<16>
+## D2, E_RJ45_N<0>, QUAD_RJ45_IO_N<16>
+NET "dtc_clk_p[38]" LOC = M26;
+NET "dtc_clk_n[38]" LOC = M27;
+## D3, E_RJ45_P<1>, QUAD_RJ45_IO_P<17>
+## D4, E_RJ45_P<2>, QUAD_RJ45_IO_P<18>
+## D5, E_RJ45_N<2>, QUAD_RJ45_IO_N<18>
+NET "dtc_data_n[38]" LOC = M25;
+NET "dtc_data_p[38]" LOC = N25;
+## D6, E_RJ45_N<1>, QUAD_RJ45_IO_N<17>
+NET "dtc_trig_p[38]" LOC = K32;
+NET "dtc_trig_n[38]" LOC = K31;
+## D7, E_RJ45_P<3>, QUAD_RJ45_IO_P<19>
+## D8, E_RJ45_N<3>, QUAD_RJ45_IO_N<19>
+NET "dtc_return_p[38]" LOC = M31;
+NET "dtc_return_n[38]" LOC = L31;
+
+#DTC PORT 40
+## H1, D_RJ45_P<0>, QUAD_RJ45_IO_P<12>
+## H2, D_RJ45_N<0>, QUAD_RJ45_IO_N<12>
+NET "dtc_clk_p[39]" LOC = L28;
+NET "dtc_clk_n[39]" LOC = M28;
+## H3, D_RJ45_P<1>, QUAD_RJ45_IO_P<13>
+## H4, D_RJ45_P<2>, QUAD_RJ45_IO_P<14>
+## H5, D_RJ45_N<2>, QUAD_RJ45_IO_N<14>
+NET "dtc_data_n[39]" LOC = P27;
+NET "dtc_data_p[39]" LOC = N27;
+## H6, D_RJ45_N<1>, QUAD_RJ45_IO_N<13>
+NET "dtc_trig_p[39]" LOC = L33;
+NET "dtc_trig_n[39]" LOC = M32;
+## H7, D_RJ45_P<3>, QUAD_RJ45_IO_P<15>
+## H8, D_RJ45_N<3>, QUAD_RJ45_IO_N<15>
+NET "dtc_return_p[39]" LOC = P31;
+NET "dtc_return_n[39]" LOC = P30;
+
+##
+###INST "<IODELAY/IDELAYCTRL_name>" IODELAY_GROUP = <group_name>;
+###*.*/ddl0_dtc_partition[8]..*/ddl0_dtc_partition/u_dtc_m
+###   aster_rx2/u_dtc_rx_deser/u_dtc_deser/delayctrl
+###CLOCKREGION_X0Y0	: 22 20 21 25 23
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[2]*/delayctrl" IODELAY_GROUP = delayctrlx0y0;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[0]*/delayctrl" IODELAY_GROUP = delayctrlx0y0;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[1]*/delayctrl" IODELAY_GROUP = delayctrlx0y0;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[5]*/delayctrl" IODELAY_GROUP = delayctrlx0y0;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[3]*/delayctrl" IODELAY_GROUP = delayctrlx0y0;
+#
+##CLOCKREGION_X0Y1	: 26 28 30 27 29
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[6]*/delayctrl" IODELAY_GROUP = delayctrlx0y1;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[8]*/delayctrl" IODELAY_GROUP = delayctrlx0y1;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[10]*/delayctrl" IODELAY_GROUP = delayctrlx0y1;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[7]*/delayctrl" IODELAY_GROUP = delayctrlx0y1;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[9]*/delayctrl" IODELAY_GROUP = delayctrlx0y1;
+#
+##CLOCKREGION_X0Y2	: 24 33 32 34 35
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[4]*/delayctrl" IODELAY_GROUP = delayctrlx0y2;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[13]*/delayctrl" IODELAY_GROUP = delayctrlx0y2;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[12]*/delayctrl" IODELAY_GROUP = delayctrlx0y2;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[14]*/delayctrl" IODELAY_GROUP = delayctrlx0y2;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[15]*/delayctrl" IODELAY_GROUP = delayctrlx0y2;
+#
+##CLOCKREGION_X0Y3	£º36 31 37 39 38
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[16]*/delayctrl" IODELAY_GROUP = delayctrlx0y3;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[11]*/delayctrl" IODELAY_GROUP = delayctrlx0y3;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[17]*/delayctrl" IODELAY_GROUP = delayctrlx0y3;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[19]*/delayctrl" IODELAY_GROUP = delayctrlx0y3;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[18]*/delayctrl" IODELAY_GROUP = delayctrlx0y3;
+#
+#
+##CLOCKREGION_X1Y0: 13 14 11 12 9	
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[13]*/delayctrl" IODELAY_GROUP = delayctrlx1y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[14]*/delayctrl" IODELAY_GROUP = delayctrlx1y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[11]*/delayctrl" IODELAY_GROUP = delayctrlx1y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[12]*/delayctrl" IODELAY_GROUP = delayctrlx1y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[9]*/delayctrl" IODELAY_GROUP = delayctrlx1y0;
+#
+##_X1Y1	: 15 17 16 18 19
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[15]*/delayctrl" IODELAY_GROUP = delayctrlx1y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[17]*/delayctrl" IODELAY_GROUP = delayctrlx1y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[16]*/delayctrl" IODELAY_GROUP = delayctrlx1y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[18]*/delayctrl" IODELAY_GROUP = delayctrlx1y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[19]*/delayctrl" IODELAY_GROUP = delayctrlx1y1;
+#
+##CLOCKREGION_X2Y0	: 4 8 5 10 6 
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[4]*/delayctrl" IODELAY_GROUP = delayctrlx2y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[8]*/delayctrl" IODELAY_GROUP = delayctrlx2y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[5]*/delayctrl" IODELAY_GROUP = delayctrlx2y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[10]*/delayctrl" IODELAY_GROUP = delayctrlx2y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[6]*/delayctrl" IODELAY_GROUP = delayctrlx2y0;
+#
+##CLOCKREGION_X2Y1	: 7 3 0 2 1
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[7]*/delayctrl" IODELAY_GROUP = delayctrlx2y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[3]*/delayctrl" IODELAY_GROUP = delayctrlx2y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[0]*/delayctrl" IODELAY_GROUP = delayctrlx2y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[2]*/delayctrl" IODELAY_GROUP = delayctrlx2y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[1]*/delayctrl" IODELAY_GROUP = delayctrlx2y1;
+#
+##CLOCKREGION_X0Y0	: 22 20 21 25 23
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[2]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y0;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[0]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y0;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[1]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y0;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[5]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y0;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[3]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y0;
+#
+##CLOCKREGION_X0Y1	: 26 28 30 27 29
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[6]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y1;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[8]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y1;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[10]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y1;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[7]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y1;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[9]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y1;
+#
+##CLOCKREGION_X0Y2	: 24 33 32 34 35
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[4]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y2;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[13]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y2;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[12]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y2;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[14]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y2;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[15]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y2;
+#
+##CLOCKREGION_X0Y3	£º36 31 37 39 38
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[16]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y3;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[11]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y3;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[17]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y3;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[19]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y3;
+#INST "*/dtc_partition[1].*/ddl0_dtc_partition[18]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx0y3;
+#
+#
+##CLOCKREGION_X1Y0: 13 14 11 12 9	
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[13]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx1y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[14]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx1y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[11]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx1y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[12]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx1y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[9]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx1y0;
+#
+##_X1Y1	: 15 17 16 18 19
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[15]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx1y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[17]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx1y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[16]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx1y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[18]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx1y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[19]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx1y1;
+#
+##CLOCKREGION_X2Y0	: 4 8 5 10 6 
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[4]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx2y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[8]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx2y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[5]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx2y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[10]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx2y0;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[6]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx2y0;
+#
+##CLOCKREGION_X2Y1	: 7 3 0 2 1
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[7]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx2y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[3]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx2y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[0]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx2y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[2]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx2y1;
+#INST "*/dtc_partition[0].*/ddl0_dtc_partition[1]*/*iodelaye1_bus*" IODELAY_GROUP = delayctrlx2y1;
