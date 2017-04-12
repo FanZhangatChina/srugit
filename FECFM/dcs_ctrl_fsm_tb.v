@@ -27,6 +27,7 @@ module dcs_ctrl_fsm_tb;
 	// Inputs
 	reg reset;
 	reg clkin;
+	reg clkin2;
 	reg hv_update;
 	reg [319:0] hv_reg_din;
 	reg [3:0] dac_dout;
@@ -49,6 +50,28 @@ module dcs_ctrl_fsm_tb;
 		.dac_cs(dac_cs), 
 		.dac_load(dac_load)
 	);
+
+
+hv_top_module instance_name (
+    .reset(reset), 
+    .clk(clkin2), 
+    .hv_update(hv_update), 
+    .dac_sclk(), 
+    .dac_ldac(), 
+    .dac_sel(), 
+    .dac_din(), 
+    .dac_dout(1'b0), 
+    .dac_end1(), 
+    .dac_err_reg0(), 
+    .dac_err_reg1(), 
+    .dac_err_reg2(), 
+    .dac_err_reg3(), 
+    .ram_data_out0(10'hff), 
+    .ram_data_out1(10'h1ff), 
+    .ram_data_out2(10'h2ff), 
+    .ram_data_out3(10'h3ff), 
+    .f_cnt()
+    );
 
 	initial begin
 		// Initialize Inputs
@@ -75,6 +98,12 @@ module dcs_ctrl_fsm_tb;
 	#500 clkin = 1'b1;
 	#500;	
 	end
-      
+	
+	always begin
+	clkin2 = 1'b0;
+	#125 clkin2 = 1'b1;
+	#125;	
+	end
+	
 endmodule
 

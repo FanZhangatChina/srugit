@@ -5,7 +5,7 @@
 # 
 # This file contains several Tcl procedures (procs) that you can use to automate
 # your project by running from xtclsh or the Project Navigator Tcl console.
-# If you load this file (using the Tcl command: source /home/fanzhang/Documents/srutmp/tutorial/fecsim/fecsim.tcl), then you can
+# If you load this file (using the Tcl command: source fecsim.tcl), then you can
 # run any of the procs included here.
 # 
 # This script is generated assuming your project has HDL sources.
@@ -36,7 +36,7 @@
 # 
 
 set myProject "fecsim"
-set myScript "/home/fanzhang/Documents/srutmp/tutorial/fecsim/fecsim.tcl"
+set myScript "fecsim.tcl"
 
 # 
 # Main (top-level) routines
@@ -233,9 +233,15 @@ proc add_source_files {} {
 
    xfile add "../../../srugit/srugit/FECFM/dac_ctrl_fsm.v"
    xfile add "../../../srugit/srugit/FECFM/dcs_ctrl_fsm_tb.v"
+   xfile add "L_shiftreg_out_16.v"
+   xfile add "dac_data_coding.v"
+   xfile add "dac_driver_module.v"
+   xfile add "error_detect.v"
+   xfile add "hv_dac_fsm.v"
+   xfile add "hv_top_module.v"
 
    # Set the Top Module as well...
-   project set top "dac_ctrl_fsm"
+   project set top "hv_top_module"
 
    puts "$myScript: project sources reloaded."
 
@@ -282,6 +288,10 @@ proc set_process_props {} {
 
    project set "Compiled Library Directory" "\$XILINX/<language>/<simulator>"
    project set "Global Optimization" "Off" -process "Map"
+   project set "Use DSP Block" "Auto" -process "Synthesize - XST"
+   project set "DCI Update Mode" "As Required" -process "Generate Programming File"
+   project set "Enable Cyclic Redundancy Checking (CRC)" "true" -process "Generate Programming File"
+   project set "Configuration Rate" "2" -process "Generate Programming File"
    project set "Pack I/O Registers/Latches into IOBs" "Off" -process "Map"
    project set "Place And Route Mode" "Route Only" -process "Place & Route"
    project set "Number of Clock Buffers" "32" -process "Synthesize - XST"
@@ -296,9 +306,11 @@ proc set_process_props {} {
    project set "Last Unlock Status" "false"
    project set "Manual Compile Order" "false"
    project set "Placer Effort Level" "High" -process "Map"
+   project set "Extra Cost Tables" "0" -process "Map"
    project set "LUT Combining" "Off" -process "Map"
    project set "Combinatorial Logic Optimization" "false" -process "Map"
    project set "Starting Placer Cost Table (1-100)" "1" -process "Map"
+   project set "Power Reduction" "Off" -process "Map"
    project set "Report Fastest Path(s) in Each Constraint" "true" -process "Generate Post-Place & Route Static Timing"
    project set "Generate Datasheet Section" "true" -process "Generate Post-Place & Route Static Timing"
    project set "Generate Timegroups Section" "false" -process "Generate Post-Place & Route Static Timing"
@@ -307,15 +319,20 @@ proc set_process_props {} {
    project set "Generate Timegroups Section" "false" -process "Generate Post-Map Static Timing"
    project set "Project Description" ""
    project set "Property Specification in Project File" "Store all values"
+   project set "Reduce Control Sets" "No" -process "Synthesize - XST"
+   project set "Shift Register Minimum Size" "2" -process "Synthesize - XST"
    project set "Case Implementation Style" "None" -process "Synthesize - XST"
    project set "RAM Extraction" "true" -process "Synthesize - XST"
    project set "ROM Extraction" "true" -process "Synthesize - XST"
    project set "FSM Encoding Algorithm" "Auto" -process "Synthesize - XST"
    project set "Optimization Goal" "Speed" -process "Synthesize - XST"
+   project set "Optimization Effort" "Normal" -process "Synthesize - XST"
    project set "Resource Sharing" "true" -process "Synthesize - XST"
    project set "Shift Register Extraction" "true" -process "Synthesize - XST"
    project set "User Browsed Strategy Files" ""
    project set "VHDL Source Analysis Standard" "VHDL-93"
+   project set "Analysis Effort Level" "Standard" -process "Analyze Power Distribution (XPower Analyzer)"
+   project set "Analysis Effort Level" "Standard" -process "Generate Text Power Report"
    project set "Input TCL Command Script" "" -process "Generate Text Power Report"
    project set "Load Physical Constraints File" "Default" -process "Analyze Power Distribution (XPower Analyzer)"
    project set "Load Physical Constraints File" "Default" -process "Generate Text Power Report"
@@ -327,6 +344,7 @@ proc set_process_props {} {
    project set "Produce Verbose Report" "false" -process "Generate Text Power Report"
    project set "Other XPWR Command Line Options" "" -process "Generate Text Power Report"
    project set "Essential Bits" "false" -process "Generate Programming File"
+   project set "Encrypt Bitstream" "false" -process "Generate Programming File"
    project set "JTAG to System Monitor Connection" "Enable" -process "Generate Programming File"
    project set "User Access Register Value" "None" -process "Generate Programming File"
    project set "Other Bitgen Command Line Options" "" -process "Generate Programming File"
@@ -337,6 +355,7 @@ proc set_process_props {} {
    project set "Launch SDK after Export" "true" -process "Export Hardware Design To SDK without Bitstream"
    project set "Target UCF File Name" "" -process "Back-annotate Pin Locations"
    project set "Ignore User Timing Constraints" "false" -process "Map"
+   project set "Register Ordering" "4" -process "Map"
    project set "Use RLOC Constraints" "Yes" -process "Map"
    project set "Other Map Command Line Options" "" -process "Map"
    project set "Use LOC Constraints" "true" -process "Translate"
@@ -352,6 +371,7 @@ proc set_process_props {} {
    project set "UserID Code (8 Digit Hexadecimal)" "0xFFFFFFFF" -process "Generate Programming File"
    project set "Configuration Pin CS" "Pull Up" -process "Generate Programming File"
    project set "Configuration Pin DIn" "Pull Up" -process "Generate Programming File"
+   project set "Disable JTAG Connection" "false" -process "Generate Programming File"
    project set "Configuration Pin Done" "Pull Up" -process "Generate Programming File"
    project set "Create ASCII Configuration File" "false" -process "Generate Programming File"
    project set "Create Binary Configuration File" "false" -process "Generate Programming File"
@@ -368,6 +388,7 @@ proc set_process_props {} {
    project set "Configuration Pin Program" "Pull Up" -process "Generate Programming File"
    project set "Power Down Device if Over Safe Temperature" "false" -process "Generate Programming File"
    project set "Configuration Pin RdWr" "Pull Up" -process "Generate Programming File"
+   project set "Starting Address for Fallback Configuration" "None" -process "Generate Programming File"
    project set "JTAG Pin TCK" "Pull Up" -process "Generate Programming File"
    project set "JTAG Pin TDI" "Pull Up" -process "Generate Programming File"
    project set "JTAG Pin TDO" "Pull Up" -process "Generate Programming File"
@@ -379,6 +400,7 @@ proc set_process_props {} {
    project set "Drive Done Pin High" "false" -process "Generate Programming File"
    project set "Enable Outputs (Output Events)" "Default (5)" -process "Generate Programming File"
    project set "Wait for DCI Match (Output Events)" "Auto" -process "Generate Programming File"
+   project set "Wait for PLL Lock (Output Events)" "No Wait" -process "Generate Programming File"
    project set "Release Write Enable (Output Events)" "Default (6)" -process "Generate Programming File"
    project set "FPGA Start-Up Clock" "CCLK" -process "Generate Programming File"
    project set "Enable Internal Done Pipe" "false" -process "Generate Programming File"
@@ -411,6 +433,7 @@ proc set_process_props {} {
    project set "Register Balancing" "No" -process "Synthesize - XST"
    project set "Register Duplication" "true" -process "Synthesize - XST"
    project set "Library for Verilog Sources" "" -process "Synthesize - XST"
+   project set "Export Results to XPower Estimator" "" -process "Generate Text Power Report"
    project set "Asynchronous To Synchronous" "false" -process "Synthesize - XST"
    project set "Automatic BRAM Packing" "false" -process "Synthesize - XST"
    project set "BRAM Utilization Ratio" "100" -process "Synthesize - XST"
@@ -425,6 +448,7 @@ proc set_process_props {} {
    project set "Generics, Parameters" "" -process "Synthesize - XST"
    project set "Hierarchy Separator" "/" -process "Synthesize - XST"
    project set "HDL INI File" "" -process "Synthesize - XST"
+   project set "LUT Combining" "No" -process "Synthesize - XST"
    project set "Library Search Order" "" -process "Synthesize - XST"
    project set "Netlist Hierarchy" "As Optimized" -process "Synthesize - XST"
    project set "Optimize Instantiated Primitives" "false" -process "Synthesize - XST"
@@ -448,12 +472,18 @@ proc set_process_props {} {
    project set "Auto Implementation Compile Order" "true"
    project set "Equivalent Register Removal" "true" -process "Map"
    project set "Placer Extra Effort" "None" -process "Map"
+   project set "Power Activity File" "" -process "Map"
    project set "Register Duplication" "Off" -process "Map"
    project set "Generate Constraints Interaction Report" "false" -process "Generate Post-Map Static Timing"
    project set "Synthesis Constraints File" "" -process "Synthesize - XST"
    project set "RAM Style" "Auto" -process "Synthesize - XST"
    project set "Maximum Number of Lines in Report" "1000" -process "Generate Text Power Report"
-   project set "Output File Name" "dac_ctrl_fsm" -process "Generate IBIS Model"
+   project set "AES Initial Vector" "" -process "Generate Programming File"
+   project set "HMAC Key (Hex String)" "" -process "Generate Programming File"
+   project set "Encrypt Key Select" "BBRAM" -process "Generate Programming File"
+   project set "AES Key (Hex String)" "" -process "Generate Programming File"
+   project set "Input Encryption Key File" "" -process "Generate Programming File"
+   project set "Output File Name" "hv_top_module" -process "Generate IBIS Model"
    project set "Timing Mode" "Performance Evaluation" -process "Place & Route"
    project set "Cycles for First BPI Page Read" "1" -process "Generate Programming File"
    project set "Enable Debugging of Serial Mode BitStream" "false" -process "Generate Programming File"
