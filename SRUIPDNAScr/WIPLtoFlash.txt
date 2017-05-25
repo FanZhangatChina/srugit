@@ -1,0 +1,9 @@
+10.160.36.156 # IP
+10103       #UDP port
+ec307132 # Request ID
+800000e8 # SubAddress
+aabbffff # Cmd Type
+00ffc000 # Flash address
+0000249C # Flash data (36.156)
+
+# Replied to UDP port 10103# 6c307132 # Request ID# 800000e8 # SubAddress# aabbffff # Cmd Type# 00ffc000 # Flash address# 00000080# 0000249C # Flash data (36.156)

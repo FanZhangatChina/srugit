@@ -1,0 +1,10 @@
+10.160.36.156 # IP
+6007       #UDP port
+ec307133 # Request ID
+00000000 # SubAddress
+aaaaffff # Command type
+00000000 # Command info
+ffffffff # Command address
+ffff8000 # Command data
+
+# Replied to UDP port 6007# 6c307133 # Request ID# 00000000 # SubAddress# aaaaffff # Command type# 00000000 # Command info# 00000000 # # ffff8000 # Command data

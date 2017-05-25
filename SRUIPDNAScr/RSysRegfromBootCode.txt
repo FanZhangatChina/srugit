@@ -1,0 +1,10 @@
+10.160.132.121 # IP
+6007       #UDP port
+ec307132 # Request ID
+00000090 # SubAddress
+bbaaffff # Command type
+00000000 # Command Info
+00000000 # Command address
+00000001 # Command address
+
+# Replied to UDP port 6007# 6007 #UDP port# 6c307132 # Repied ID # 00000090 # SubAddress (0x90)# bbaaffff # Command type# 00000000 # Command Info# 00000000 # 12091907 # SRUBootCode FM version (Year: 2012; Month: 09; Day: 17; Version: 07)# 00000000 # # 20120006 # SRU DNA number (Year: 2012; SN: 0006)
