@@ -32,7 +32,7 @@ module dac_ctrl_fsm(
     );
 
 	reg [15:0] dac0_pdin, dac1_pdin, dac2_pdin, dac3_pdin;
-	reg dac_cs_i = 1'b0;
+	reg dac_cs_i = 1'b1;
 	wire dac_sclk_i;
 	assign dac_sclk_i = clkin;
 	assign dac_sclk = {dac_sclk_i, dac_sclk_i, dac_sclk_i, dac_sclk_i};
@@ -122,12 +122,12 @@ module dac_ctrl_fsm(
 	8'd0 : begin dac0_pdin <= 16'hff;  dac1_pdin <= 16'hff; dac2_pdin <= 16'hff; dac3_pdin <= 16'hff; end
 	8'd20 : begin dac0_pdin <= {4'h2, hv_reg0, 2'b00};  dac1_pdin <= {4'h2, hv_reg8, 2'b00}; dac2_pdin <= {4'h2, hv_reg16, 2'b00}; dac3_pdin <= {4'h2, hv_reg24, 2'b00}; end
 	8'd40 : begin dac0_pdin <= {4'h3, hv_reg1, 2'b00};  dac1_pdin <= {4'h3, hv_reg9, 2'b00}; dac2_pdin <= {4'h3, hv_reg17, 2'b00}; dac3_pdin <= {4'h3, hv_reg25, 2'b00}; end
-	8'd80 : begin dac0_pdin <= {4'h4, hv_reg2, 2'b00};  dac1_pdin <= {4'h4, hv_reg10, 2'b00}; dac2_pdin <= {4'h4, hv_reg18, 2'b00}; dac3_pdin <= {4'h4, hv_reg26, 2'b00}; end
-	8'd100 : begin dac0_pdin <= {4'h5, hv_reg3, 2'b00};  dac1_pdin <= {4'h5, hv_reg11, 2'b00}; dac2_pdin <= {4'h5, hv_reg19, 2'b00}; dac3_pdin <= {4'h5, hv_reg27, 2'b00}; end
-	8'd120 : begin dac0_pdin <= {4'h6, hv_reg4, 2'b00};  dac1_pdin <= {4'h6, hv_reg12, 2'b00}; dac2_pdin <= {4'h6, hv_reg20, 2'b00}; dac3_pdin <= {4'h6, hv_reg28, 2'b00}; end
-	8'd140 : begin dac0_pdin <= {4'h7, hv_reg5, 2'b00};  dac1_pdin <= {4'h7, hv_reg13, 2'b00}; dac2_pdin <= {4'h7, hv_reg21, 2'b00}; dac3_pdin <= {4'h7, hv_reg29, 2'b00}; end
-	8'd160 : begin dac0_pdin <= {4'h8, hv_reg6, 2'b00};  dac1_pdin <= {4'h8, hv_reg14, 2'b00}; dac2_pdin <= {4'h8, hv_reg22, 2'b00}; dac3_pdin <= {4'h8, hv_reg30, 2'b00}; end
-	8'd180 : begin dac0_pdin <= {4'h9, hv_reg7, 2'b00};  dac1_pdin <= {4'h9, hv_reg15, 2'b00}; dac2_pdin <= {4'h9, hv_reg23, 2'b00}; dac3_pdin <= {4'h9, hv_reg31, 2'b00}; end
+	8'd60 : begin dac0_pdin <= {4'h4, hv_reg2, 2'b00};  dac1_pdin <= {4'h4, hv_reg10, 2'b00}; dac2_pdin <= {4'h4, hv_reg18, 2'b00}; dac3_pdin <= {4'h4, hv_reg26, 2'b00}; end
+	8'd80 : begin dac0_pdin <= {4'h5, hv_reg3, 2'b00};  dac1_pdin <= {4'h5, hv_reg11, 2'b00}; dac2_pdin <= {4'h5, hv_reg19, 2'b00}; dac3_pdin <= {4'h5, hv_reg27, 2'b00}; end
+	8'd100 : begin dac0_pdin <= {4'h6, hv_reg4, 2'b00};  dac1_pdin <= {4'h6, hv_reg12, 2'b00}; dac2_pdin <= {4'h6, hv_reg20, 2'b00}; dac3_pdin <= {4'h6, hv_reg28, 2'b00}; end
+	8'd120 : begin dac0_pdin <= {4'h7, hv_reg5, 2'b00};  dac1_pdin <= {4'h7, hv_reg13, 2'b00}; dac2_pdin <= {4'h7, hv_reg21, 2'b00}; dac3_pdin <= {4'h7, hv_reg29, 2'b00}; end
+	8'd140 : begin dac0_pdin <= {4'h8, hv_reg6, 2'b00};  dac1_pdin <= {4'h8, hv_reg14, 2'b00}; dac2_pdin <= {4'h8, hv_reg22, 2'b00}; dac3_pdin <= {4'h8, hv_reg30, 2'b00}; end
+	8'd160 : begin dac0_pdin <= {4'h9, hv_reg7, 2'b00};  dac1_pdin <= {4'h9, hv_reg15, 2'b00}; dac2_pdin <= {4'h9, hv_reg23, 2'b00}; dac3_pdin <= {4'h9, hv_reg31, 2'b00}; end
 	default : begin
 	dac0_pdin <= dac0_pdin;
 	dac1_pdin <= dac1_pdin;
@@ -136,19 +136,25 @@ module dac_ctrl_fsm(
 	end
 	endcase
 	
-	always @(posedge dac_sclk_i)
+	always  @(negedge reset or posedge dac_sclk_i)
+	if(~reset)
+	dac_cs_i <= 1'b1;
+	else
 	case(bitcnt)
-	8'hff, 8'd16, 8'd36, 8'd56, 8'd76, 8'd96, 8'd116, 8'd136, 8'd156, 8'd176 : dac_cs_i <= 1'b1;
-	8'h0,  8'd20, 8'd40, 8'd60, 8'd80, 8'd100, 8'd120, 8'd140, 8'd160, 8'd180 : dac_cs_i <= 1'b0;
+	8'd17, 8'd37, 8'd57, 8'd77, 8'd97, 8'd117, 8'd137, 8'd157, 8'd177 : dac_cs_i <= 1'b1;
+	8'h1,  8'd21, 8'd41, 8'd61, 8'd81, 8'd101, 8'd121, 8'd141, 8'd161 : dac_cs_i <= 1'b0;
 	default : begin dac_cs_i <= dac_cs_i; end
 	endcase
 	
 	assign dac_cs = {dac_cs_i,dac_cs_i,dac_cs_i,dac_cs_i};
 	
-	always @(posedge dac_sclk_i)
-	case(bitcnt)
-	8'd180 : dac_load <= 1'b1;
-	8'd0, 8'd196 : dac_load <= 1'b0;
+	always  @(negedge reset or posedge dac_sclk_i)
+	if(~reset)
+	dac_load <= 1'b1;
+	else
+	case(bitcnt)	
+	8'd180 : dac_load <= 1'b0;
+	8'd0, 8'd196 : dac_load <= 1'b1;
 	default dac_load <= dac_load;
 	endcase
 	
@@ -197,7 +203,6 @@ module dac_ctrl_fsm(
          dac3_din   <= dac3_pi_reg[piso_shift-2];
       end	
 
-//assign dac_din	= {dac3_din, dac2_din, dac1_din, dac0_din};	
 assign dac_din[0] = dac0_din;
 assign dac_din[1] = dac1_din;
 assign dac_din[2] = dac2_din;
